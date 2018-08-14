@@ -1,7 +1,16 @@
 package main
 
-import "github.com/hcwong/errgular/routes"
+import (
+	"log"
+
+	"github.com/hcwong/errgular/routes"
+	"github.com/joho/godotenv"
+)
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading env variables")
+	}
 	routes.StartServer()
 }

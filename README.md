@@ -1,5 +1,5 @@
 # Introduction
-A simple error reporting tool
+A simple error reporting tool. Learning Go and angular
 
 ## TODO
 * Get the library to handle postgres connection and setup a package/functions to handle that (ongoing)

@@ -6,10 +6,13 @@ import (
 	"log"
 	"os"
 
+	// Driver for postgres connection
+	_ "github.com/lib/pq"
 	"github.com/pkg/errors"
 )
 
-type connPool struct {
+// ConnPool contains the db connection and the dbConfig struct
+type ConnPool struct {
 	db     *sql.DB
 	config dbConfig
 }
@@ -22,7 +25,8 @@ type dbConfig struct {
 	database string
 }
 
-func createDb() (pool connPool, err error) {
+// CreateDb opens a connection to the postgres db
+func CreateDb() (pool ConnPool, err error) {
 	config := initializeConfig()
 	configErr := checkConfig(config)
 	if configErr != nil {
@@ -47,6 +51,17 @@ func createDb() (pool connPool, err error) {
 	}
 	pool.db = db
 	return
+}
+
+func (pool ConnPool) closeConn() (err error) {
+	if err = pool.db.Close(); err != nil {
+		err = errors.Wrapf(
+			err,
+			"Could not close connection to db (%s)",
+		)
+		return
+	}
+	return nil
 }
 
 func checkConfig(config dbConfig) (err error) {

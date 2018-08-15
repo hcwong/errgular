@@ -11,10 +11,15 @@ import (
 	"github.com/pkg/errors"
 )
 
+const qCreateErrorsTable = "create table if not exists errors (error_id integer primary key, project_name varchar(255) not null, error_code int not null)"
+
+// TODO: fmt.sprintf this query
+const qCreateIndProjectsTable = ""
+
 // ConnPool contains the db connection and the dbConfig struct
 type ConnPool struct {
-	db     *sql.DB
-	config dbConfig
+	Db     *sql.DB
+	Config dbConfig
 }
 
 type dbConfig struct {
@@ -25,20 +30,33 @@ type dbConfig struct {
 	database string
 }
 
+// type query struct {
+// 	name  string
+// 	query string
+// }
+
+// var queries = []query{
+// 	query{
+// 		"createErrorsTable",
+// 		qCreateErrorsTable,
+// 	},
+// }
+
 // CreateDb opens a connection to the postgres db
-func CreateDb() (pool ConnPool, err error) {
+func CreateDb() (pool ConnPool) {
 	config := initializeConfig()
 	configErr := checkConfig(config)
 	if configErr != nil {
 		// TODO: Should probably write a custom error file to handle all
 		log.Fatal("dbConfig not fully filled")
 	}
-	pool.config = config
+	pool.Config = config
 	db, dbErr := sql.Open(
 		"postgres",
 		fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s sslmode=disable",
 			config.user, config.password, config.database, config.host, config.port),
 	)
+	// TOCONSIDER: may want to abstract out all these err checks. Function a bit long
 	if dbErr != nil {
 		// TODO: Same as above
 		log.Fatal("Could not open connection to postgres db")
@@ -49,17 +67,22 @@ func CreateDb() (pool ConnPool, err error) {
 		// TODO: Same as above
 		log.Fatal("Could not ping postgres db")
 	}
-	pool.db = db
-	return
+	pool.Db = db
+	createErr := createTable(pool, "errorsTable")
+	if createErr != nil {
+		// TODO: Same as above
+		log.Fatal("Could not create Errors Table")
+	}
+	return pool
 }
 
 func (pool ConnPool) closeConn() (err error) {
-	if err = pool.db.Close(); err != nil {
+	if err = pool.Db.Close(); err != nil {
 		err = errors.Wrapf(
 			err,
-			"Could not close connection to db (%s)",
+			"Could not close connection to db",
 		)
-		return
+		return err
 	}
 	return nil
 }
@@ -68,9 +91,9 @@ func checkConfig(config dbConfig) (err error) {
 	if config.host == "" || config.port == "" || config.user == "" ||
 		config.password == "" || config.database == "" {
 		err = errors.Errorf(
-			"Please set all fields in dbConfig (%s)",
+			"Please set all fields in dbConfig",
 		)
-		return
+		return err
 	}
 	return nil
 }
@@ -88,15 +111,28 @@ func initializeConfig() (config dbConfig) {
 
 func ping(db *sql.DB) (err error) {
 	if err = db.Ping(); err != nil {
-		err = errors.Wrapf(err,
-			"Could not ping postgres db (%s)",
+		err = errors.Wrapf(
+			err,
+			"Could not ping postgres db",
 		)
-		return
+		return err
 	}
 	return nil
 }
 
-// TODO: Function to create the table if it is not already created
-func createTable() {
-
+func createTable(pool ConnPool, queryType string) (err error) {
+	var queryToExecute string
+	switch queryType {
+	case "errorsTable":
+		queryToExecute = qCreateErrorsTable
+	}
+	_, err = pool.Db.Exec(queryToExecute)
+	if err != nil {
+		err = errors.Wrapf(
+			err,
+			"Could not create errors table",
+		)
+		return err
+	}
+	return nil
 }

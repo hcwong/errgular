@@ -4,15 +4,13 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"time"
 )
 
-// JSON structure of the POST request body from the application
+// ErrgularReq - JSON structure of the POST request body from the application
 type ErrgularReq struct {
-	name      string
-	code      int
-	errMsg    string
-	timestamp time.Time
+	name   string
+	code   int
+	errMsg string
 }
 
 // HomeHandler handles '\'
@@ -28,10 +26,13 @@ func AddEvent(writer http.ResponseWriter, req *http.Request) {
 	var r ErrgularReq
 	log.Println("Error event added. This is still WIP")
 	decoder := json.NewDecoder(req.Body)
-	err := decoder.Decode(&r)
+	decodeErr := decoder.Decode(&r)
+	if decodeErr != nil {
+		panic(decodeErr) // Maybe want to return the appropriate err code also
+	}
+	err := AddNewEvent(&r)
 	if err != nil {
-		panic(err) // Maybe want to return the appropriate err code also
+		log.Fatal("Failed to add the new event into the database")
 	}
 	writer.WriteHeader(http.StatusOK)
-	// TODO: Create a new entry into the db
 }

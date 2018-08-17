@@ -12,5 +12,6 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading env variables")
 	}
+	routes.InitializeDb()
 	routes.StartServer()
 }

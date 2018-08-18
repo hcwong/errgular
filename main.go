@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/hcwong/errgular/routes"
+	"github.com/hcwong/errgular/app/routes"
 	"github.com/joho/godotenv"
 )
 

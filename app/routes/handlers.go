@@ -8,9 +8,9 @@ import (
 
 // ErrgularReq - JSON structure of the POST request body from the application
 type ErrgularReq struct {
-	name   string
-	code   int
-	errMsg string
+	Name   string
+	Code   int
+	ErrMsg string
 }
 
 // HomeHandler handles '\'
@@ -24,7 +24,6 @@ func HomeHandler(writer http.ResponseWriter, req *http.Request) {
 // AddEvent logs the error event sent by the app into db. WIP
 func AddEvent(writer http.ResponseWriter, req *http.Request) {
 	var r ErrgularReq
-	log.Println("Error event added. This is still WIP")
 	decoder := json.NewDecoder(req.Body)
 	decodeErr := decoder.Decode(&r)
 	if decodeErr != nil {
@@ -32,6 +31,7 @@ func AddEvent(writer http.ResponseWriter, req *http.Request) {
 	}
 	err := AddNewEvent(&r)
 	if err != nil {
+		log.Println(err)
 		log.Fatal("Failed to add the new event into the database")
 	}
 	writer.WriteHeader(http.StatusOK)

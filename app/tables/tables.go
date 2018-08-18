@@ -31,6 +31,7 @@ func CreateDb() (pool ConnPool) {
 	configErr := checkConfig(config)
 	if configErr != nil {
 		// TODO: Should probably write a custom error file to handle all
+		log.Println(configErr)
 		log.Fatal("dbConfig not fully filled")
 	}
 	pool.Config = config
@@ -42,12 +43,14 @@ func CreateDb() (pool ConnPool) {
 	// TOCONSIDER: may want to abstract out all these err checks. Function a bit long
 	if dbErr != nil {
 		// TODO: Same as above
+		log.Println(dbErr)
 		log.Fatal("Could not open connection to postgres db")
 	}
 	// Ping db to verify that a connection can be made
 	pingErr := ping(db)
 	if pingErr != nil {
 		// TODO: Same as above
+		log.Println(pingErr)
 		log.Fatal("Could not ping postgres db")
 	}
 	pool.Db = db

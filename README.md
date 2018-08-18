@@ -10,3 +10,4 @@ Prerequisites: Golang and Postgres, ngrok or some other tunneling software for l
 * Set up a file to contain all the custom errors to throw
 * Dabble with go's test suite
 * Read up on go spew?
+* Get the angular part up

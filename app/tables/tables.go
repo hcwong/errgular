@@ -17,6 +17,7 @@ type ConnPool struct {
 	Config dbConfig
 }
 
+// DbConfig contains the configuration for the database
 type dbConfig struct {
 	host     string
 	port     string

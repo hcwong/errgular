@@ -12,25 +12,25 @@ import (
 )
 
 var (
-	testHost     = os.Getenv("DB_HOST_TEST")
-	testPort     = os.Getenv("DB_PORT_TEST")
-	testUser     = os.Getenv("DB_USER_TEST")
-	testPassword = os.Getenv("DB_PASSWORD_TEST")
-	testDatabase = os.Getenv("DB_DATABASE_TEST")
-	testSchema   = os.Getenv("SCHEMA_NAME_TEST")
+	TestHost     = os.Getenv("DB_HOST_TEST")
+	TestPort     = os.Getenv("DB_PORT_TEST")
+	TestUser     = os.Getenv("DB_USER_TEST")
+	TestPassword = os.Getenv("DB_PASSWORD_TEST")
+	TestDatabase = os.Getenv("DB_DATABASE_TEST")
+	TestSchema   = os.Getenv("SCHEMA_NAME_TEST")
 )
 
-// Set up and tear down a test database for each test. All these should probably go into test helpers
+// CreateTestDatabase setups a test db
 func CreateTestDatabase(t *testing.T) *sql.DB {
 	db, dbErr := sql.Open(
 		"postgres",
 		fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s sslmode=disable",
-			testUser, testPassword, testDatabase, testHost, testPort),
+			TestUser, TestPassword, TestDatabase, TestHost, TestPort),
 	)
 	if dbErr != nil {
 		log.Fatal("Error creating test database")
 	}
-	_, schemaErr := db.Exec(fmt.Sprintf("CREATE SCHEMA '%s'", testSchema))
+	_, schemaErr := db.Exec(fmt.Sprintf("CREATE SCHEMA '%s'", TestSchema))
 	if schemaErr != nil {
 		log.Println(schemaErr)
 		log.Fatal("Error creating test schema")
@@ -39,7 +39,7 @@ func CreateTestDatabase(t *testing.T) *sql.DB {
 	return db
 }
 
-// Seed the test database everytime it is setup
+// LoadTestData seeds the test database
 func LoadTestData(t *testing.T, db *sql.DB) {
 	for _, query := range TestQueries {
 		_, err := db.Exec(query)
@@ -50,6 +50,12 @@ func LoadTestData(t *testing.T, db *sql.DB) {
 	}
 }
 
+// CloseTestDatabase removes the schema and closes db connection
 func CloseTestDatabase(t *testing.T, db *sql.DB) {
 	const qDropTestSchema = "drop schema '%s'"
+	_, err := db.Exec(fmt.Sprintf(qDropTestSchema, TestSchema))
+	if err != nil {
+		log.Println(err)
+		log.Fatal("Could not close test database")
+	}
 }

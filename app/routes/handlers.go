@@ -29,7 +29,7 @@ func AddEvent(writer http.ResponseWriter, req *http.Request) {
 	if decodeErr != nil {
 		panic(decodeErr) // Maybe want to return the appropriate err code also
 	}
-	err := AddNewEvent(&r)
+	err := AddNewEvent(&r, Database)
 	if err != nil {
 		log.Println(err)
 		log.Fatal("Failed to add the new event into the database")

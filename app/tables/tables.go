@@ -13,8 +13,7 @@ import (
 
 // ConnPool contains the db connection and the dbConfig struct
 type ConnPool struct {
-	Db     *sql.DB
-	Config dbConfig
+	Db *sql.DB
 }
 
 // DbConfig contains the configuration for the database
@@ -35,7 +34,6 @@ func CreateDb() (pool ConnPool) {
 		log.Println(configErr)
 		log.Fatal("dbConfig not fully filled")
 	}
-	pool.Config = config
 	db, dbErr := sql.Open(
 		"postgres",
 		fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s sslmode=disable",

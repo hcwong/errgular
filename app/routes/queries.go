@@ -17,22 +17,22 @@ const qInsertNewEvent = "insert into %s (error_code, description) values (%d, '%
 const qCheckErrorTypeExists = "select * from errors where project_name='%s' and error_code=%d"
 const qAddErrorTypeToErrors = "insert into errors (project_name, error_code) values ('%s', %d)"
 
-var db tables.ConnPool
+var Database tables.ConnPool
 
-// InitializeDb creates the db conn and creates the necessary tables if they are not created
+// InitializDatabase creates theDatabase conn and creates the necessary tables if they are not created
 func InitializeDb() {
 	log.Println("Setting up the database")
-	db = tables.CreateDb()
-	err := createTable("errorsTable")
+	Database = tables.CreateDb()
+	err := createTable("errors", Database)
 	if err != nil {
 		log.Fatal("Failed to create errors table in InitializeDb")
 	}
 }
 
-func createTable(queryType string) (err error) {
+func createTable(queryType string, db tables.ConnPool) (err error) {
 	var queryToExecute string
 	switch queryType {
-	case "errorsTable":
+	case "errors":
 		queryToExecute = qCreateErrorsTable
 	default:
 		queryToExecute = fmt.Sprintf(qCreateIndProjectsTable, queryType)
@@ -49,16 +49,16 @@ func createTable(queryType string) (err error) {
 }
 
 // AddNewEvent handles the queries for AddEvent route handler
-func AddNewEvent(data *ErrgularReq) (err error) {
+func AddNewEvent(data *ErrgularReq, db tables.ConnPool) (err error) {
 	log.Println("Adding a New Error into the appropriate table")
 	name, errMsg := data.Name, data.ErrMsg
 	code := data.Code
-	existErr := createTable(name)
+	existErr := createTable(name, db)
 	if existErr != nil {
 		err = existErr
 		return err
 	}
-	errorExists := checkErrorTypeExist(name, code)
+	errorExists := checkErrorTypeExist(name, code, db)
 	if errorExists != nil {
 		err = errorExists
 		return err
@@ -72,7 +72,7 @@ func AddNewEvent(data *ErrgularReq) (err error) {
 	return nil
 }
 
-func checkErrorTypeExist(name string, code int) (err error) {
+func checkErrorTypeExist(name string, code int, db tables.ConnPool) (err error) {
 	checkErrorTypeExistQuery := fmt.Sprintf(qCheckErrorTypeExists, name, code)
 	rows, checkErr := db.Db.Query(checkErrorTypeExistQuery)
 	if checkErr != nil {

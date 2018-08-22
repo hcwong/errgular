@@ -34,14 +34,13 @@ func CreateTestDatabase(t *testing.T) tables.ConnPool {
 		log.Println(schemaErr)
 		log.Fatal("Error creating test schema")
 	}
-	LoadTestData(t, db)
 	database := tables.ConnPool{db}
 	return database
 }
 
 // LoadTestData seeds the test database
-func LoadTestData(t *testing.T, db *sql.DB) {
-	for _, query := range TestQueries {
+func LoadTestData(t *testing.T, db *sql.DB, queries []string) {
+	for _, query := range queries {
 		_, err := db.Exec(query)
 		if err != nil {
 			log.Println(err)

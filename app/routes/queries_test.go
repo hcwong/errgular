@@ -33,3 +33,14 @@ func TestCreateTable(t *testing.T) {
 		})
 	}
 }
+
+// func TestCheckErrorTypeExist(t *testing.T) {
+// 	assert := assert.New(t)
+
+// 	db := testhelpers.CreateTestDatabase(t)
+// 	defer testhelpers.CloseTestDatabase(t, db.Db)
+// 	// Assume that connection works
+// 	_ = createTable("errors", db)
+// 	// Seed the tables with the necessary information
+
+// }

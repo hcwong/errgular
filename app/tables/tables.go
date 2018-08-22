@@ -1,19 +1,19 @@
 package tables
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"os"
 
 	// Driver for postgres connection
+	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/pkg/errors"
 )
 
 // ConnPool contains the db connection and the dbConfig struct
 type ConnPool struct {
-	Db *sql.DB
+	Db *sqlx.DB
 }
 
 // DbConfig contains the configuration for the database
@@ -34,7 +34,7 @@ func CreateDb() (pool ConnPool) {
 		log.Println(configErr)
 		log.Fatal("dbConfig not fully filled")
 	}
-	db, dbErr := sql.Open(
+	db, dbErr := sqlx.Open(
 		"postgres",
 		fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s sslmode=disable",
 			config.user, config.password, config.database, config.host, config.port),
@@ -89,7 +89,7 @@ func initializeConfig() (config dbConfig) {
 	return
 }
 
-func ping(db *sql.DB) (err error) {
+func ping(db *sqlx.DB) (err error) {
 	if err = db.Ping(); err != nil {
 		err = errors.Wrapf(
 			err,

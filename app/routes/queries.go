@@ -1,11 +1,11 @@
 package routes
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 
 	"github.com/hcwong/errgular/app/tables"
+	"github.com/jmoiron/sqlx"
 
 	"github.com/pkg/errors"
 )
@@ -72,7 +72,7 @@ func AddNewEvent(data *ErrgularReq, db tables.ConnPool) (err error) {
 }
 
 func checkErrorTypeExist(name string, code int, db tables.ConnPool) (err error) {
-	rows, checkErr := db.Db.Query(qCheckErrorTypeExists, name, code)
+	rows, checkErr := db.Db.Queryx(qCheckErrorTypeExists, name, code)
 	if checkErr != nil {
 		err = errors.Wrapf(
 			checkErr,
@@ -97,7 +97,7 @@ func checkErrorTypeExist(name string, code int, db tables.ConnPool) (err error) 
 	return nil
 }
 
-func checkRowsCount(rows *sql.Rows) (count int) {
+func checkRowsCount(rows *sqlx.Rows) (count int) {
 	count = 0
 	for rows.Next() {
 		count++

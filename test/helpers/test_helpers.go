@@ -1,7 +1,6 @@
 package testhelpers
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"os"
@@ -9,6 +8,7 @@ import (
 
 	// Driver for postgres connection
 	"github.com/hcwong/errgular/app/tables"
+	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
@@ -19,7 +19,7 @@ var TestHost, TestPort, TestUser, TestPassword, TestDatabase, TestSchema string
 func CreateTestDatabase(t *testing.T) tables.ConnPool {
 	LoadTestEnvVars()
 
-	db, dbErr := sql.Open(
+	db, dbErr := sqlx.Open(
 		"postgres",
 		fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s sslmode=disable",
 			TestUser, TestPassword, TestDatabase, TestHost, TestPort),
@@ -39,7 +39,7 @@ func CreateTestDatabase(t *testing.T) tables.ConnPool {
 }
 
 // LoadTestData seeds the test database
-func LoadTestData(t *testing.T, db *sql.DB, queries []string) {
+func LoadTestData(t *testing.T, db *sqlx.DB, queries []string) {
 	for _, query := range queries {
 		_, err := db.Exec(query)
 		if err != nil {
@@ -50,7 +50,7 @@ func LoadTestData(t *testing.T, db *sql.DB, queries []string) {
 }
 
 // CloseTestDatabase removes the schema and closes db connection
-func CloseTestDatabase(t *testing.T, db *sql.DB) {
+func CloseTestDatabase(t *testing.T, db *sqlx.DB) {
 	const qDropTestSchema = "drop schema %s cascade"
 	_, err := db.Exec(fmt.Sprintf(qDropTestSchema, TestSchema))
 	if err != nil {

@@ -11,3 +11,4 @@ Prerequisites: Golang and Postgres, ngrok or some other tunneling software for l
 * Finish up tests
 * Read up on go spew?
 * Get the React part up
+* Read into using prepared statements

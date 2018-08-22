@@ -1,3 +1,5 @@
 package testhelpers
 
-var qCheckErrorTypeExist = []string{}
+var QCheckErrorTypeExist = []string{
+	"insert into errors values ('proj1', 1)",
+}

@@ -6,7 +6,6 @@ import (
 	"os"
 	"testing"
 
-	// Driver for postgres connection
 	"github.com/hcwong/errgular/app/tables"
 	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
@@ -39,9 +38,9 @@ func CreateTestDatabase(t *testing.T) tables.ConnPool {
 }
 
 // LoadTestData seeds the test database
-func LoadTestData(t *testing.T, db *sqlx.DB, queries []string) {
+func LoadTestData(t *testing.T, db tables.ConnPool, queries []string) {
 	for _, query := range queries {
-		_, err := db.Exec(query)
+		_, err := db.Db.Exec(query)
 		if err != nil {
 			log.Println(err)
 			log.Fatal("Something went wrong when seeding the database")

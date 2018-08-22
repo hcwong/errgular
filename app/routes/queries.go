@@ -13,13 +13,13 @@ import (
 // TODO: Create a foreign key to link the ids of the two tables together
 const qCreateErrorsTable = "create table if not exists errors (id serial primary key, project_name varchar(255) not null, error_code int not null)"
 const qCreateIndProjectsTable = "create table if not exists %s (error_code int not null, description varchar(255), incident_time timestamp default current_timestamp)"
-const qInsertNewEvent = "insert into %s (error_code, description) values (%d, '%s')"
-const qCheckErrorTypeExists = "select * from errors where project_name='%s' and error_code=%d"
-const qAddErrorTypeToErrors = "insert into errors (project_name, error_code) values ('%s', %d)"
+const qInsertNewEvent = "insert into %s (error_code, description) values ($1, $2)"
+const qCheckErrorTypeExists = "select * from errors where project_name=$1 and error_code=$2"
+const qAddErrorTypeToErrors = "insert into errors (project_name, error_code) values ($1, $2)"
 
 var Database tables.ConnPool
 
-// InitializDatabase creates theDatabase conn and creates the necessary tables if they are not created
+// InitializeDb creates the db conn and creates the necessary tables if they are not created
 func InitializeDb() {
 	log.Println("Setting up the database")
 	Database = tables.CreateDb()
@@ -30,17 +30,16 @@ func InitializeDb() {
 }
 
 func createTable(queryType string, db tables.ConnPool) (err error) {
-	var queryToExecute string
+	var createErr error
 	switch queryType {
 	case "errors":
-		queryToExecute = qCreateErrorsTable
+		_, createErr = db.Db.Exec(qCreateErrorsTable)
 	default:
-		queryToExecute = fmt.Sprintf(qCreateIndProjectsTable, queryType)
+		_, createErr = db.Db.Exec(fmt.Sprintf(qCreateIndProjectsTable, queryType))
 	}
-	_, err = db.Db.Exec(queryToExecute)
-	if err != nil {
+	if createErr != nil {
 		err = errors.Wrapf(
-			err,
+			createErr,
 			"Could not create errors table",
 		)
 		return err
@@ -63,8 +62,8 @@ func AddNewEvent(data *ErrgularReq, db tables.ConnPool) (err error) {
 		err = errorExists
 		return err
 	}
-	insertQuery := fmt.Sprintf(qInsertNewEvent, name, code, errMsg)
-	_, insertErr := db.Db.Exec(insertQuery)
+	insertNewEventQuery := fmt.Sprintf(qInsertNewEvent, name)
+	_, insertErr := db.Db.Exec(insertNewEventQuery, code, errMsg)
 	if insertErr != nil {
 		err = insertErr
 		return err
@@ -73,8 +72,7 @@ func AddNewEvent(data *ErrgularReq, db tables.ConnPool) (err error) {
 }
 
 func checkErrorTypeExist(name string, code int, db tables.ConnPool) (err error) {
-	checkErrorTypeExistQuery := fmt.Sprintf(qCheckErrorTypeExists, name, code)
-	rows, checkErr := db.Db.Query(checkErrorTypeExistQuery)
+	rows, checkErr := db.Db.Query(qCheckErrorTypeExists, name, code)
 	if checkErr != nil {
 		err = errors.Wrapf(
 			checkErr,
@@ -86,8 +84,7 @@ func checkErrorTypeExist(name string, code int, db tables.ConnPool) (err error) 
 	defer rows.Close()
 	count := checkRowsCount(rows)
 	if count == 0 {
-		insertErrorQuery := fmt.Sprintf(qAddErrorTypeToErrors, name, code)
-		_, insertErr := db.Db.Exec(insertErrorQuery)
+		_, insertErr := db.Db.Exec(qAddErrorTypeToErrors, name, code)
 		if insertErr != nil {
 			err = errors.Wrapf(
 				insertErr,

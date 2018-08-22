@@ -22,9 +22,10 @@ func TestCreateTable(t *testing.T) {
 				t.Log(createTableErr)
 				t.Fatal(fmt.Sprintf("Create Table test failed for subtest %s", testCase))
 			}
-			checkTableCreatedQuery := fmt.Sprintf("select exists (select 1 from information_schema.tables where table_name='%s')", testCase)
+			checkTableCreatedQuery := "select exists (select 1 from information_schema.tables where table_name=$1)"
 			var isCreated bool
-			checkCreateErr := db.Db.QueryRow(checkTableCreatedQuery).Scan(&isCreated)
+			checkCreateErr := db.Db.QueryRow(checkTableCreatedQuery, testCase).
+				Scan(&isCreated)
 			if checkCreateErr != nil {
 				t.Log(createTableErr)
 				t.Fatal(fmt.Sprintf("Create Table test failed for subtest %s", testCase))

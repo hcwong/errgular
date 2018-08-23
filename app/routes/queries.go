@@ -84,15 +84,23 @@ func checkErrorTypeExist(name string, code int, db tables.ConnPool) (err error) 
 	defer rows.Close()
 	count := checkRowsCount(rows)
 	if count == 0 {
-		_, insertErr := db.Db.Exec(qAddErrorTypeToErrors, name, code)
-		if insertErr != nil {
-			err = errors.Wrapf(
-				insertErr,
-				"Something went wrong while inserting new type of error into errors table",
-			)
+		addErr := addNewErrortoErrors(db, name, code)
+		if addErr != nil {
+			err = addErr
 			return err
 		}
+	}
+	return nil
+}
 
+func addNewErrortoErrors(db tables.ConnPool, name string, code int) (err error) {
+	_, insertErr := db.Db.Exec(qAddErrorTypeToErrors, name, code)
+	if insertErr != nil {
+		err = errors.Wrapf(
+			insertErr,
+			"Something went wrong while inserting new type of error into errors table",
+		)
+		return err
 	}
 	return nil
 }

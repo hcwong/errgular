@@ -42,14 +42,24 @@ func TestCreateTable(t *testing.T) {
 func TestCheckErrorTypeExist(t *testing.T) {
 	assert := assert.New(t)
 
-	testCases := map[string]int{"proj1": 1, "proj2": 2}
-
-	for tableName, errorCode := range testCases {
-		t.Run("Check Error Exists", func(t *testing.T) {
-			db := testhelpers.CreateTestDatabase(t)
-			defer testhelpers.CloseTestDatabase(t, db.Db)
-			createTableTest(t, "errors", db)
-			testhelpers.LoadTestData(t, db, testhelpers.QCheckErrorTypeExist)
-		})
-	}
+	t.Run("Error Exists and is found", func(t *testing.T) {
+		db := testhelpers.CreateTestDatabase(t)
+		defer testhelpers.CloseTestDatabase(t, db.Db)
+		createTableTest(t, "errors", db)
+		testhelpers.LoadTestData(t, db, testhelpers.QCheckErrorTypeExist)
+		_ = checkErrorTypeExist("proj1", 1, db)
+		type row struct {
+			Project_name string
+			Error_code   int
+		}
+		var results []row
+		err := db.Db.Select(&results, "select project_name, error_code from errors where project_name='proj1' and error_code=1")
+		if err != nil {
+			t.Log(err)
+			t.Fatal("Error while checking the errors table")
+		}
+		assert.Equal(results[0].Project_name, "proj1")
+		assert.Equal(results[0].Error_code, 1)
+		assert.Equal(len(results), 1)
+	})
 }

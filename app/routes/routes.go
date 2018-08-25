@@ -11,30 +11,30 @@ import (
 func StartServer() {
 	log.Println("Starting the mux server on port 5000...")
 	r := mux.NewRouter()
-	for _, route := range routesList {
-		r.HandleFunc(route.path, route.handler).
-			Methods(route.method)
+	for _, route := range RoutesList {
+		r.HandleFunc(route.Path, route.Handler).
+			Methods(route.Method)
 	}
 	http.ListenAndServe(":5000", r)
 }
 
-type route struct {
-	name    string
-	path    string
-	method  string
-	handler http.HandlerFunc
+type Route struct {
+	Name    string
+	Path    string
+	Method  string
+	Handler http.HandlerFunc
 }
 
-type routes []route
+type Routes []Route
 
-var routesList = routes{
-	route{
+var RoutesList = Routes{
+	Route{
 		"home",
 		"/",
 		"GET",
 		HomeHandler,
 	},
-	route{
+	Route{
 		"addEvent",
 		"/new_event",
 		"POST",

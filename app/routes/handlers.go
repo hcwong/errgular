@@ -27,12 +27,17 @@ func AddEvent(writer http.ResponseWriter, req *http.Request) {
 	decoder := json.NewDecoder(req.Body)
 	decodeErr := decoder.Decode(&r)
 	if decodeErr != nil {
-		panic(decodeErr) // Maybe want to return the appropriate err code also
+		writer.WriteHeader(http.StatusBadRequest)
+		writer.Write([]byte("400 Bad Request"))
+		log.Println(decodeErr)
+		log.Println("Failed to add the new event into the database")
 	}
 	err := AddNewEvent(&r, Database)
 	if err != nil {
+		writer.WriteHeader(http.StatusInternalServerError)
+		writer.Write([]byte("501 Internal Server Error"))
 		log.Println(err)
-		log.Fatal("Failed to add the new event into the database")
+		log.Println("Failed to add the new event into the database")
 	}
 	writer.WriteHeader(http.StatusOK)
 }

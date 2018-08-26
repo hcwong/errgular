@@ -30,12 +30,12 @@ func AddEvent(writer http.ResponseWriter, req *http.Request) {
 		writer.WriteHeader(http.StatusBadRequest)
 		writer.Write([]byte("400 Bad Request"))
 		log.Println(decodeErr)
-		log.Println("Failed to add the new event into the database")
+		log.Println("Request Body must be incorrect")
 	}
 	err := AddNewEvent(&r, Database)
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
-		writer.Write([]byte("501 Internal Server Error"))
+		writer.Write([]byte("500 Internal Server Error"))
 		log.Println(err)
 		log.Println("Failed to add the new event into the database")
 	}

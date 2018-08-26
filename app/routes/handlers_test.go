@@ -1,11 +1,14 @@
 package routes
 
 import (
+	"bytes"
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 
 	"github.com/gorilla/mux"
+	"github.com/hcwong/errgular/test/helpers"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -26,23 +29,36 @@ func TestHomeHandler(t *testing.T) {
 }
 
 func TestAddEvent(t *testing.T) {
-	// t.Run("Internal Server Error because no table", func(t *testing.T) {
-	// 	data := &ErrgularReq{"proj1", 1, "test"}
-	// 	reqBody, _ := json.Marshal(data)
-	// 	req, _ := http.NewRequest("POST", "/new_event", bytes.NewBuffer(reqBody))
-	// 	res := httptest.NewRecorder()
-	// 	createTestRouter().ServeHTTP(res, req)
-	// 	assert.Equal(t, 501, res.Code)
-	// })
-	// t.Run("Successful", func(t *testing.T) {
-	// 	Database := testhelpers.CreateTestDatabase(t)
-	// 	defer testhelpers.CloseTestDatabase(t, Database.Db)
-	// 	CreateTable("errors", Database)
-	// 	data := &ErrgularReq{"proj1", 1, "test"}
-	// 	reqBody, _ := json.Marshal(data)
-	// 	req, _ := http.NewRequest("POST", "/new_event", bytes.NewBuffer(reqBody))
-	// 	res := httptest.NewRecorder()
-	// 	createTestRouter().ServeHTTP(res, req)
-	// 	assert.Equal(t, 200, res.Code)
-	// })
+	t.Run("Successful", func(t *testing.T) {
+		Database = testhelpers.CreateTestDatabase(t)
+		defer testhelpers.CloseTestDatabase(t, Database.Db)
+		CreateTable("errors", Database)
+		data := &ErrgularReq{"proj1", 1, "test"}
+		reqBody, _ := json.Marshal(data)
+		req, _ := http.NewRequest("POST", "/new_event", bytes.NewBuffer(reqBody))
+		res := httptest.NewRecorder()
+		createTestRouter().ServeHTTP(res, req)
+		assert.Equal(t, 200, res.Code)
+	})
+	t.Run("400 Bad Request", func(t *testing.T) {
+		Database = testhelpers.CreateTestDatabase(t)
+		defer testhelpers.CloseTestDatabase(t, Database.Db)
+		CreateTable("errors", Database)
+		data := []string{"proj1", "1"} // Array being passed in
+		reqBody, _ := json.Marshal(data)
+		req, _ := http.NewRequest("POST", "/new_event", bytes.NewBuffer(reqBody))
+		res := httptest.NewRecorder()
+		createTestRouter().ServeHTTP(res, req)
+		assert.Equal(t, 400, res.Code)
+	})
+	t.Run("500 Internal Server Error", func(t *testing.T) {
+		Database = testhelpers.CreateTestDatabase(t)
+		defer testhelpers.CloseTestDatabase(t, Database.Db)
+		data := &ErrgularReq{"proj1", 1, "test"}
+		reqBody, _ := json.Marshal(data)
+		req, _ := http.NewRequest("POST", "/new_event", bytes.NewBuffer(reqBody))
+		res := httptest.NewRecorder()
+		createTestRouter().ServeHTTP(res, req)
+		assert.Equal(t, 500, res.Code)
+	})
 }

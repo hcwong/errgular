@@ -23,13 +23,13 @@ var Database tables.ConnPool
 func InitializeDb() {
 	log.Println("Setting up the database")
 	Database = tables.CreateDb()
-	err := createTable("errors", Database)
+	err := CreateTable("errors", Database)
 	if err != nil {
 		log.Fatal("Failed to create errors table in InitializeDb")
 	}
 }
 
-func createTable(queryType string, db tables.ConnPool) (err error) {
+func CreateTable(queryType string, db tables.ConnPool) (err error) {
 	var createErr error
 	switch queryType {
 	case "errors":
@@ -52,7 +52,7 @@ func AddNewEvent(data *ErrgularReq, db tables.ConnPool) (err error) {
 	log.Println("Adding a New Error into the appropriate table")
 	name, errMsg := data.Name, data.ErrMsg
 	code := data.Code
-	existErr := createTable(name, db)
+	existErr := CreateTable(name, db)
 	if existErr != nil {
 		err = existErr
 		return err

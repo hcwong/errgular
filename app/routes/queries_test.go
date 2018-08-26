@@ -20,7 +20,7 @@ type projRow struct {
 }
 
 func createTableTest(t *testing.T, tableName string, db tables.ConnPool) {
-	createTableErr := createTable(tableName, db)
+	createTableErr := CreateTable(tableName, db)
 	if createTableErr != nil {
 		t.Log(createTableErr)
 		t.Fatal(fmt.Sprintf("Failed to create table %s", tableName))

@@ -1,58 +1,48 @@
 package routes
 
 import (
-	"context"
-	"log"
 	"net/http"
 	"net/http/httptest"
-	"os"
-	"os/signal"
 	"testing"
-	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/stretchr/testify/assert"
 )
 
-func startTestServer() *http.Server {
+func createTestRouter() *mux.Router {
 	r := mux.NewRouter()
 	for _, route := range RoutesList {
 		r.HandleFunc(route.Path, route.Handler).
 			Methods(route.Method)
 	}
-	srv := &http.Server{
-		Addr:    "127.0.0.1:5000",
-		Handler: r,
-	}
-	return srv
-}
-
-func shutDownTestServer(s *http.Server) {
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
-
-	// Block until we receive our signal.
-	<-c
-
-	// Create a deadline to wait for.
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
-	defer cancel()
-	s.Shutdown(ctx)
+	return r
 }
 
 func TestHomeHandler(t *testing.T) {
 	req, _ := http.NewRequest("GET", "/", nil)
 	res := httptest.NewRecorder()
+	createTestRouter().ServeHTTP(res, req)
+	assert.Equal(t, 200, res.Code)
+}
 
-	s := startTestServer()
-	go func() {
-		if err := s.ListenAndServe(); err != nil {
-			log.Println(err)
-		}
-	}()
-
-	defer shutDownTestServer(s)
-
-	// WIP
-	HomeHandler(res, req)
-
+func TestAddEvent(t *testing.T) {
+	// t.Run("Internal Server Error because no table", func(t *testing.T) {
+	// 	data := &ErrgularReq{"proj1", 1, "test"}
+	// 	reqBody, _ := json.Marshal(data)
+	// 	req, _ := http.NewRequest("POST", "/new_event", bytes.NewBuffer(reqBody))
+	// 	res := httptest.NewRecorder()
+	// 	createTestRouter().ServeHTTP(res, req)
+	// 	assert.Equal(t, 501, res.Code)
+	// })
+	// t.Run("Successful", func(t *testing.T) {
+	// 	Database := testhelpers.CreateTestDatabase(t)
+	// 	defer testhelpers.CloseTestDatabase(t, Database.Db)
+	// 	CreateTable("errors", Database)
+	// 	data := &ErrgularReq{"proj1", 1, "test"}
+	// 	reqBody, _ := json.Marshal(data)
+	// 	req, _ := http.NewRequest("POST", "/new_event", bytes.NewBuffer(reqBody))
+	// 	res := httptest.NewRecorder()
+	// 	createTestRouter().ServeHTTP(res, req)
+	// 	assert.Equal(t, 200, res.Code)
+	// })
 }

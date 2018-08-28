@@ -1,0 +1,4 @@
+.navbar{
+  @include display-flex(row);
+  @extend %centerize;
+}

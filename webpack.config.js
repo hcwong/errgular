@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const config = {
-  entry: './web/src/App.tsx',
+  entry: './web/src/components/App.tsx',
 
   output: {
     path: path.resolve(__dirname, 'web/dist'),
@@ -20,7 +20,7 @@ const config = {
     rules: [
       { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-      { test: /\.scss$/, loaders: ["style", "css", "sass"]},
+      { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"]},
       { exclude: /node_modules/ }
     ]
   }

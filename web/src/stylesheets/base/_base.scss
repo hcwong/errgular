@@ -2,6 +2,10 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  margin: 0px;
+}
+
 *::before,
 *::after {
   box-sizing: inherit;
@@ -12,5 +16,4 @@ html {
   font-family: 16px;
   font-family: sans-serif;
   line-height: 1.5em;
-  padding: 16px 24px;
 }

@@ -1,4 +1,16 @@
 .navbar{
-  @include display-flex(row);
-  @extend %centerize;
+  align-items: center;
+  background-color: #170e63;
+  
+  height: 56px;
+  width: 100%;
+
+  align-items: center;
+  position: fixed;
+
+  .navbar-brand {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 200;
+  }
 }

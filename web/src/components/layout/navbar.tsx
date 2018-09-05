@@ -9,8 +9,9 @@ export class Navbar extends React.Component<{}, {}> {
         </a>
         <ul className="navbar-ul">
           <li className="navbar-li">
-            <div>
-              
+            <div className="navbar-proj-name">
+              Placeholder Project
+              <img src="./../../../img/baseline/arrow_down.svg"/>
             </div>
           </li>
         </ul>

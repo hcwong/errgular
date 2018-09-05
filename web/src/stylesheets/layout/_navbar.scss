@@ -20,13 +20,21 @@
   }
 
   .navbar-ul {
-    @include display-flex(row);
+    @include display-flex-100(row);
     list-style: none;
-    
+
     .navbar-li {
       font-size: 14px;
       font-weight: 200;
       margin-left: 8px;
+    }
+  }
+
+  .navbar-proj-name {
+    @include display-flex(row);
+    align-items: center;
+    & > img {
+      margin-left: 6px;
     }
   }
 }

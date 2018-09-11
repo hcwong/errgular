@@ -1,0 +1,13 @@
+.search-bar {
+  @include display-flex(row);
+  @extend %centerize;
+  height: 40px;
+
+  margin-left: 10px;
+  padding: 2px 4px;
+}
+
+.search-bar-input {
+  @include display-flex-100(row);
+  color: #000;
+}

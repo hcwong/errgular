@@ -1,4 +1,5 @@
 import * as React from "react";
+import {SearchBar} from './search_bar';
 
 export class Navbar extends React.Component<{}, {}> {
   render() {
@@ -14,6 +15,9 @@ export class Navbar extends React.Component<{}, {}> {
               <img src="./../../../img/baseline/arrow_down.svg"/>
             </div>
           </li>
+          <SearchBar
+            placeholder= "Search for your Project"
+          />
         </ul>
       </nav>
     );

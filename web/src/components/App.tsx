@@ -8,7 +8,8 @@ require("./../stylesheets/main.scss");
 class Hello extends React.Component<{}, {}> {
   render() {
     return(
-      <Navbar/>
+      <Navbar
+      />
     );
   }
 }

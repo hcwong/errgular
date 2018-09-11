@@ -22,6 +22,7 @@
   .navbar-ul {
     @include display-flex-100(row);
     list-style: none;
+    align-items: center;
 
     .navbar-li {
       font-size: 14px;

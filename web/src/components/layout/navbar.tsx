@@ -1,7 +1,17 @@
 import * as React from "react";
 import {SearchBar} from './search_bar';
+import {DropdownBtn} from './../buttons/dropdown_btn';
 
-export class Navbar extends React.Component<{}, {}> {
+interface Props {
+  btnName: string;
+  placeholder: string;
+}
+
+export class Navbar extends React.Component<Props, {}> {
+  constructor(props: Props) {
+    super(props);
+  }
+  
   render() {
     return(
       <nav className="navbar">
@@ -10,16 +20,15 @@ export class Navbar extends React.Component<{}, {}> {
         </a>
         <ul className="navbar-ul">
           <li className="navbar-li">
-            <div className="navbar-proj-name">
-              Placeholder Project
-              <img src="./../../../img/baseline/arrow_down.svg"/>
-            </div>
+            <DropdownBtn
+              btnName={this.props.btnName}
+            />
           </li>
           <SearchBar
-            placeholder= "Search for your Project"
+            placeholder={this.props.placeholder}
           />
         </ul>
       </nav>
     );
   }
-}
+};

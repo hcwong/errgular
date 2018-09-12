@@ -1,15 +1,14 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {Navbar} from './layout/navbar';
+import {Home} from './home';
 
 require("./../stylesheets/main.scss");
 
 class Hello extends React.Component<{}, {}> {
   render() {
     return(
-      <Navbar
-      />
+      <Home/>
     );
   }
 }

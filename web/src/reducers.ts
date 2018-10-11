@@ -1,4 +1,4 @@
-import * as projTypes from './types/index';
+import * as projTypes from './types';
 
 export const projReducer = (action: projTypes.ProjectAction) => {
   switch (action.type) {

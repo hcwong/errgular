@@ -41,3 +41,5 @@ func AddEvent(writer http.ResponseWriter, req *http.Request) {
 	}
 	writer.WriteHeader(http.StatusOK)
 }
+
+// TODO: Create handlers to update the web components via fetch

@@ -10,10 +10,11 @@ export class DropdownBtn extends React.Component<Props,{}> {
   }
 
   render() {
+    const svgDown = require("svg-inline-loader?classPrefix!./../../../img/arrow_down.svg");
     return(
       <div className="navbar-proj-name">
         {this.props.btnName}
-        <img src="./../../../img/baseline/arrow_down.svg"/>
+        <img src={svgDown}/>
       </div>
     );
   }

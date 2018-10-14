@@ -41,3 +41,5 @@ var RoutesList = Routes{
 		AddEvent,
 	},
 }
+
+// TODO: Set up a route to pick the correct project

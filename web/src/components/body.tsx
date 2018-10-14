@@ -1,9 +1,23 @@
 import * as React from "react";
+import {Display} from "./display";
 
-class Body extends React.Component<{}, {}> {
+interface Props {
+  // TODO
+}
+
+export class Body extends React.Component<Props, {}> {
+  constructor(props: Props){
+    super(props);
+  }
+  
+  // Return a flex div with flex div then a 2x2 CSS Grad div
   render() {
     return (
-      <div></div>
+      <div className="body">
+        <div className="body-info">
+        </div>
+        <Display/>
+      </div>
     );
   }
 }

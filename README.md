@@ -1,5 +1,5 @@
 # Introduction
-A simple error reporting tool. Learning Go and React
+A simple toy project. Learning Go and React
 
 ## Installation
 Prerequisites: Golang and Postgres, ngrok or some other tunneling software for local dev
@@ -7,8 +7,8 @@ Prerequisites: Golang and Postgres, ngrok or some other tunneling software for l
 2. Go to project root and run `go install` followed by `$GOPATH/bin/errgular`. Of course this assumes that the `$GOPATH` is set and this is cloned into your Go Workspace
 
 ## TODO
-* Create custom errors to throw and improve error handling. Panic vs log.fatal?
-* Finish up tests
+* Get the routes up for the front end to call
+* Work on front end
 * Read up on go spew?
-* Get the React part up
 * Read into using prepared statements
+* Create custom errors to throw and improve error handling. Panic vs log.fatal?

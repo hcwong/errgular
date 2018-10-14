@@ -1,0 +1,15 @@
+.body {
+  @include display_flex(column);
+  @extend %centerize;
+  height: 100%;
+}
+
+.display-container {
+  display: grid;
+  width: 100%;
+}
+
+.display-box {
+  display: flex;
+  width: 100%;
+}

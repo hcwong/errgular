@@ -13,9 +13,10 @@ export class Display extends React.Component<Props, {}> {
   render() {
     return(
       <div className="display-container">
-        {this.props.data.map(((element) => {
+        {/* {this.props.data.map(((element) => {
           <DisplayBox/>
-        }))}     
+        }))}      */}
+        
       </div>
     );
   }

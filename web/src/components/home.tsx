@@ -11,7 +11,9 @@ export class Home extends React.Component<{},{}> {
           btnName="Placeholder"
           placeholder="Search for your Project"
         />
-        <Body/>
+        <Body
+          data={[]}
+        />
       </div>
     );
   }

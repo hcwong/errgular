@@ -2,7 +2,7 @@ import * as React from "react";
 import {Display} from "./display";
 
 interface Props {
-  // TODO
+  data: Array<string>
 }
 
 export class Body extends React.Component<Props, {}> {
@@ -16,7 +16,9 @@ export class Body extends React.Component<Props, {}> {
       <div className="body">
         <div className="body-info">
         </div>
-        <Display/>
+        <Display
+          data={this.props.data}
+        />
       </div>
     );
   }

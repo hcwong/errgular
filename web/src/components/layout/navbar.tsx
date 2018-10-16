@@ -11,8 +11,9 @@ export class Navbar extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
-  
+
   render() {
+    //  If it's true this should return with the dropdown menu
     return(
       <nav className="navbar">
         <a className="navbar-brand navbar-brand:hover">

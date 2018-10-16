@@ -22,7 +22,7 @@ const config = {
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
       { exclude: /node_modules/ },
-      { test: /\.svg$/, loader: "svg-inline-loader" }
+      { test: /\.svg$/, use: [{loader: "file-loader", options: {name: "./arrow_down.svg"}}]}
     ]
   }
 };

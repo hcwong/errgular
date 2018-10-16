@@ -1,15 +1,42 @@
 .body {
-  @include display_flex(column);
   @extend %centerize;
+  @include display_flex(column);
   height: 100%;
+  background-color: #f1f1f1;
 }
 
-.display-container {
+.grid-container {
+  @extend %centerize;
   display: grid;
   width: 100%;
+
+  &.two-by-two {
+    &.top-right {
+      grid-area: top-right;
+    }
+
+    &.top-left {
+      grid-area: top-left;
+    }
+
+    &.bottom-right {
+      grid-area: bottom-right;
+    }
+
+    &.bottom-left {
+      grid-area: bottom-left;
+    }
+    grid-template-rows: 45% 45%;
+    grid-template-columns: 45% 45%;
+    grid-row-gap: 10%;
+    grid-column-gap: 10%;
+    grid-template-areas: 
+      "top-left top-right"
+      "bottom-left bottom-right";
+  }
 }
 
-.display-box {
-  display: flex;
-  width: 100%;
+.grid-box {
+  @extend %centerize;
+  @include display_flex(column);
 }

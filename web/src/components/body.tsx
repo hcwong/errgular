@@ -14,8 +14,6 @@ export class Body extends React.Component<Props, {}> {
   render() {
     return (
       <div className="body">
-        <div className="body-info">
-        </div>
         <Display
           data={this.props.data}
         />

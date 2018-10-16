@@ -12,11 +12,19 @@ export class Display extends React.Component<Props, {}> {
 
   render() {
     return(
-      <div className="display-container">
-        {/* {this.props.data.map(((element) => {
-          <DisplayBox/>
-        }))}      */}
-        
+      <div className="grid-container.two-by-two">
+        <DisplayBox
+          section=".top-right"
+        />
+        <DisplayBox
+          section=".top-left"
+        />
+        <DisplayBox
+          section=".bottom-left"
+        />
+        <DisplayBox
+          section=".bottom-right"
+        />
       </div>
     );
   }

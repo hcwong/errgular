@@ -1,9 +1,13 @@
 import * as React from "react";
 
-export const DisplayBox = () => {
+interface Props {
+  section: string
+}
+
+export const DisplayBox = (props: Props) => {
   return(
-    <div className="DisplayBox">
-      
+    <div className={"grid-box"+this.props.section}>
+      Placeholder Text
     </div>
   )
 }

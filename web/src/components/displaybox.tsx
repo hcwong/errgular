@@ -6,7 +6,7 @@ interface Props {
 
 export const DisplayBox = (props: Props) => {
   return(
-    <div className={"grid-box"+this.props.section}>
+    <div className={"grid-box"+props.section}>
       Placeholder Text
     </div>
   )

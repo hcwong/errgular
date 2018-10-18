@@ -1,0 +1,7 @@
+.d_flex_r{
+  @include display_flex(row);
+}
+
+.d_flex_c{
+  @include display_flex(column);
+}

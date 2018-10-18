@@ -12,4 +12,10 @@
 // Import layouts
 @import 
   'layout/navbar',
+  'layout/body',
+  'layout/templates',
   'layout/search_bar';
+
+// Import components
+@import 
+  'components/grid';

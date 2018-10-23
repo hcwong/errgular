@@ -12,7 +12,7 @@ export class Display extends React.Component<Props, {}> {
 
   render() {
     return(
-      <div className="grid-container.two-by-two">
+      <div className="grid-container two-by-two">
         <DisplayBox
           section=".top-right"
         />

@@ -1,20 +1,21 @@
 import * as React from 'react';
+import { DropdownBox } from '../dropdown_box';
 const svgDown = require("./../../../img/arrow_down.svg");
 
 interface Props {
   btnName: string;
 }
 
-export class DropdownBtn extends React.Component<Props,{}> {
+export class DropdownBtn extends React.Component<Props, any> {
   constructor(props: Props) {
     super(props);
     this.dropDownHandler.bind(this);
-    this.setState({clicked: false});
+    this.state = {clicked: false};
   }
 
   dropDownHandler() {
-    console.log("clicked");
-    this.setState({clicked: true})
+    const original = this.state.clicked;
+    this.setState({clicked: !original})
   }
 
   render() {

@@ -4,25 +4,10 @@
   width: 100%;
 
   &.two-by-two {
-    &.top-right {
-      grid-area: top-right;
-    }
-
-    &.top-left {
-      grid-area: top-left;
-    }
-
-    &.bottom-right {
-      grid-area: bottom-right;
-    }
-
-    &.bottom-left {
-      grid-area: bottom-left;
-    }
-    grid-template-rows: 45% 45%;
+    grid-template-rows: 40% 40%;
     grid-template-columns: 45% 45%;
-    grid-row-gap: 10%;
-    grid-column-gap: 10%;
+    grid-row-gap: 20%;
+    grid-column-gap: 20%;
     grid-template-areas: 
       "top-left top-right"
       "bottom-left bottom-right";
@@ -30,6 +15,21 @@
 }
 
 .grid-box {
+  &.top-right {
+    grid-area: top-right;
+  }
+
+  &.top-left {
+    grid-area: top-left;
+  }
+
+  &.bottom-right {
+    grid-area: bottom-right;
+  }
+
+  &.bottom-left {
+    grid-area: bottom-left;
+  }
   @extend %centerize;
   @include display_flex(row);
 }

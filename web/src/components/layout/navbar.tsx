@@ -1,6 +1,6 @@
 import * as React from "react";
 import {SearchBar} from './search_bar';
-import {DropdownBtn} from './../buttons/dropdown_btn';
+import { DropdownContain } from "../dropdown_contain";
 
 interface Props {
   btnName: string;
@@ -13,7 +13,6 @@ export class Navbar extends React.Component<Props, {}> {
   }
 
   render() {
-    //  If it's true this should return with the dropdown menu
     return(
       <nav className="navbar">
         <a className="navbar-brand navbar-brand:hover">
@@ -21,9 +20,7 @@ export class Navbar extends React.Component<Props, {}> {
         </a>
         <ul className="navbar-ul">
           <li className="navbar-li">
-            <DropdownBtn
-              btnName={this.props.btnName}
-            />
+            <DropdownContain/>
           </li>
           <SearchBar
             placeholder={this.props.placeholder}

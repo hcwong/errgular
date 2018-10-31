@@ -24,7 +24,7 @@ const config = {
       { exclude: /node_modules/ },
       { test: /\.svg$/, use: [{loader: "file-loader", options: {name: "./arrow_down.svg"}}]}
     ]
-  }
+  },
 };
 
 module.exports = config;

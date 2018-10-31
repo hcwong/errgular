@@ -11,4 +11,3 @@ export const DisplayBox = (props: Props) => {
     </div>
   )
 }
-

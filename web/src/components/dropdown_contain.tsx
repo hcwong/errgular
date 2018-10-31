@@ -15,12 +15,11 @@ export class DropdownContain extends React.Component<{}, State> {
   }
 
   dropDownHandler() {
-    console.log("clicked");
     if (this.state.clicked) {
       this.setState({clicked: false});
     } else {
       this.setState({clicked: true});
-    }
+    } 
   }
 
   render() {

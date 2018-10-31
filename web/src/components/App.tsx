@@ -5,7 +5,7 @@ import {Home} from './home';
 
 require("./../stylesheets/main.scss");
 
-class Hello extends React.Component<{}, {}> {
+class App extends React.Component<{}, {}> {
   render() {
     return(
       <Home/>
@@ -14,4 +14,8 @@ class Hello extends React.Component<{}, {}> {
 }
 
 const mountNode = document.getElementById("app");
-ReactDOM.render(<Hello />, mountNode);
+ReactDOM.render(<App />, mountNode);
+
+if (module.hot) {
+  module.hot.accept();
+}

@@ -1,3 +1,4 @@
 .box_li {
-  @include display_flex(row)
+  @include display_flex(column);
+  text-overflow: ellipsis; 
 }

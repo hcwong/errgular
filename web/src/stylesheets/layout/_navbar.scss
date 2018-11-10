@@ -1,5 +1,4 @@
-.navbar{
-  background-color: #170e63; 
+.navbar{ 
   color: #fff;
   height: 56px;
   width: 100%;
@@ -29,13 +28,15 @@
       font-weight: 200;
       margin-left: 8px;
     }
+
+    &>li:last-child {
+      float: right;
+    }
   }
 
   .navbar-proj-name {
     @include display-flex(row);
     align-items: center;
-    border: 1px #fff solid;
-    border-radius: 8px;
     padding: 2px 4px;
     & > img {
       margin-left: 6px;

@@ -7,13 +7,13 @@
 // Import abstracts
 @import
   'abstracts/extensions',
-  'abstracts/mixins';
+  'abstracts/mixins',
+  'abstracts/templates';
 
 // Import layouts
 @import 
   'layout/navbar',
   'layout/body',
-  'layout/templates',
   'layout/search_bar';
 
 // Import components

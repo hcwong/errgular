@@ -14,7 +14,7 @@ export class Navbar extends React.Component<Props, {}> {
 
   render() {
     return(
-      <nav className="navbar">
+      <nav className="navbar bg_dark_b">
         <a className="navbar-brand navbar-brand:hover">
           Errgular
         </a>
@@ -22,9 +22,11 @@ export class Navbar extends React.Component<Props, {}> {
           <li className="navbar-li">
             <DropdownContain/>
           </li>
-          <SearchBar
-            placeholder={this.props.placeholder}
-          />
+          <li className="navbar-li">
+            <SearchBar
+              placeholder={this.props.placeholder}
+            />
+          </li>
         </ul>
       </nav>
     );

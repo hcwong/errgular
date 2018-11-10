@@ -15,3 +15,5 @@
 .env
 
 node_modules/
+
+.web/dist/**.js

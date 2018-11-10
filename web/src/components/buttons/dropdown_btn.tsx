@@ -14,7 +14,7 @@ export class DropdownBtn extends React.Component<Props, any> {
 
   render() {
     return(
-      <div className="navbar-proj-name"
+      <div className="navbar-proj-name bor_1_ff"
         onClick={() => this.props.handler()}
       >
         {this.props.btnName}

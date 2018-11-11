@@ -22,11 +22,9 @@ export class Navbar extends React.Component<Props, {}> {
           <li className="navbar-li">
             <DropdownContain/>
           </li>
-          <li className="navbar-li">
-            <SearchBar
-              placeholder={this.props.placeholder}
-            />
-          </li>
+          <SearchBar
+            placeholder={this.props.placeholder}
+          />
         </ul>
       </nav>
     );

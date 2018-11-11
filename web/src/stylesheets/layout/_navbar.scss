@@ -29,8 +29,9 @@
       margin-left: 8px;
     }
 
-    &>li:last-child {
-      float: right;
+    & div:last-child {
+      margin-left: auto;
+      margin-right: 20px;
     }
   }
 

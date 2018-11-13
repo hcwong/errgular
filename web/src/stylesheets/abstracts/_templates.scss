@@ -14,6 +14,12 @@
   position: absolute;
 }
 
+.d_abs_r {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+}
+
 .d_block {
   display: block;
 }
@@ -94,6 +100,10 @@
 
 .bor_top_none {
   border-top: none;
+}
+
+.bor_bot_ff {
+  border-bottom: 1px solid #fff;
 }
 // POINTER
 

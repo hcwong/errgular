@@ -40,6 +40,10 @@ var RoutesList = Routes{
 		"POST",
 		AddEvent,
 	},
+	Route{
+		"chooseProject",
+		"/proj",
+		"GET",
+		ChooseProj,
+	},
 }
-
-// TODO: Set up a route to pick the correct project

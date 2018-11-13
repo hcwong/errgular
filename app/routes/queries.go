@@ -16,6 +16,8 @@ const qCreateIndProjectsTable = "create table if not exists %s (error_code int n
 const qInsertNewEvent = "insert into %s (error_code, description) values ($1, $2)"
 const qCheckErrorTypeExists = "select * from errors where project_name=$1 and error_code=$2"
 const qAddErrorTypeToErrors = "insert into errors (project_name, error_code) values ($1, $2)"
+const qChooseProj = "select * from errors where project_name=$1"
+const qGetAllErrors = "select * from $1"
 
 var Database tables.ConnPool
 
@@ -91,6 +93,25 @@ func checkErrorTypeExist(name string, code int, db tables.ConnPool) (err error) 
 		}
 	}
 	return nil
+}
+
+func checkErrorExist(name string, db tables.ConnPool) (err error) {
+	_, checkErr := db.Db.Queryx(qChooseProj, name)
+	if checkErr != nil {
+		err = errors.Wrapf(checkErr, "Something went wrong when checking errors table")
+		fmt.Println("returning error")
+		return err
+	}
+	// Assume that if there are no errors then the table must exist
+	return nil
+}
+
+// WIP
+func getAllErrorInstances(name string, db tables.ConnPool) {
+	existErr := checkErrorExist(name, db)
+	if existErr == nil {
+
+	}
 }
 
 func addNewErrortoErrors(db tables.ConnPool, name string, code int) (err error) {

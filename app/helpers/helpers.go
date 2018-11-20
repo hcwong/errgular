@@ -1,5 +1,16 @@
 package helpers
 
-// TODO
-// one function to handle error wrapping
-// one function to handle checking if error is nil
+import (
+	"fmt"
+
+	"github.com/pkg/errors"
+)
+
+func isErrorReturned(err error, msg string) error {
+	if err != nil {
+		fmt.Println(err)
+		wrappedError := errors.Wrapf(err, msg)
+		return wrappedError
+	}
+	return nil
+}

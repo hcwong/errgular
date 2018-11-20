@@ -80,7 +80,6 @@ func checkErrorTypeExist(name string, code int, db tables.ConnPool) (err error) 
 			checkErr,
 			"Something went wrong when checking the errors table",
 		)
-		fmt.Println("returning error")
 		return err
 	}
 	defer rows.Close()
@@ -106,12 +105,9 @@ func checkErrorExist(name string, db tables.ConnPool) (err error) {
 	return nil
 }
 
-// WIP
-func getAllErrorInstances(name string, db tables.ConnPool) {
-	existErr := checkErrorExist(name, db)
-	if existErr == nil {
-
-	}
+func getAllErrorInstances(name string, db tables.ConnPool) sqlx.Rows {
+	rows, _ := db.Db.Queryx(qGetAllErrors, name)
+	return *rows
 }
 
 func addNewErrortoErrors(db tables.ConnPool, name string, code int) (err error) {

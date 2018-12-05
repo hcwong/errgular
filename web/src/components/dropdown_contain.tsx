@@ -6,9 +6,13 @@ interface State {
   clicked: boolean
 }
 
-export class DropdownContain extends React.Component<{}, State> {
-  constructor() {
-    super({});
+interface Props {
+  projHandler: any
+}
+
+export class DropdownContain extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
     this.state = {clicked: false};
     this.dropDownHandler = this.dropDownHandler.bind(this);
   }
@@ -31,6 +35,7 @@ export class DropdownContain extends React.Component<{}, State> {
           />
           <DropdownBox
             options={["test", "test1"]}
+            projHandler={this.props.projHandler}
           />
         </div>
       )

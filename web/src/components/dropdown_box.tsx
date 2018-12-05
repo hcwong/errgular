@@ -2,6 +2,7 @@ import * as React from 'react';
 
 interface Props {
   options: any
+  projHandler: any
 }
 
 export class DropdownBox extends React.Component<Props, {}> {
@@ -9,20 +10,6 @@ export class DropdownBox extends React.Component<Props, {}> {
     super(props);
     console.log(this.props.options);
   } 
-  // TODO: need to create a function here to make a call back to server to get the proj data
-  getProjData(name: string) {
-    // WIP: Update the url
-    const data = fetch("placeholder")
-                  .then((res) => {
-                    return res.json()
-                  })
-                  .catch((err) => {
-                    console.log("Error while getting project data");
-                  });
-    if (data !== undefined) {
-      // WIP: change the button name and modify the body's contents with redux
-    }
-  }
 
   render() {
     const options = this.props.options.map((option: any, index: number) => {

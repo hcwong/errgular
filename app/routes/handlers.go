@@ -17,6 +17,9 @@ type ProjReq struct {
 	Name string
 }
 
+type ProjData struct {
+}
+
 // HomeHandler handles '\'
 func HomeHandler(writer http.ResponseWriter, req *http.Request) {
 	log.Println("'/' received request")
@@ -58,4 +61,6 @@ func ChooseProj(writer http.ResponseWriter, req *http.Request) {
 		log.Println("Request Body must be incorrect")
 	}
 	// Grab the project details from the database
+	projData := GetAllErrorInstances(r.Name, Database)
+
 }

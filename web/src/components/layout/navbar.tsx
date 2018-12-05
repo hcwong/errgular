@@ -5,6 +5,7 @@ import { DropdownContain } from "../dropdown_contain";
 interface Props {
   btnName: string;
   placeholder: string;
+  projHandler: any;
 }
 
 export class Navbar extends React.Component<Props, {}> {
@@ -20,7 +21,9 @@ export class Navbar extends React.Component<Props, {}> {
         </a>
         <ul className="navbar-ul">
           <li className="navbar-li">
-            <DropdownContain/>
+            <DropdownContain
+              projHandler={this.props.projHandler}
+            />
           </li>
           <SearchBar
             placeholder={this.props.placeholder}

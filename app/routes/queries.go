@@ -105,7 +105,7 @@ func checkErrorExist(name string, db tables.ConnPool) (err error) {
 	return nil
 }
 
-func getAllErrorInstances(name string, db tables.ConnPool) sqlx.Rows {
+func GetAllErrorInstances(name string, db tables.ConnPool) sqlx.Rows {
 	rows, _ := db.Db.Queryx(qGetAllErrors, name)
 	return *rows
 }

@@ -18,6 +18,7 @@ export class DropdownContain extends React.Component<Props, State> {
   }
 
   dropDownHandler() {
+    console.log("clicked");
     if (this.state.clicked) {
       this.setState({clicked: false});
     } else {

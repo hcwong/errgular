@@ -1,8 +1,8 @@
-import * as constants from './constants';
+export const GET_PROJ = "GET_PROJ";
 
-export const chooseProject = (project: string) => {
+export const getProj = (name: string) => {
   return {
-    type: constants.CHOOSE_PROJECT,
-    payload: project
-  };
-};
+    type: GET_PROJ,
+    projName: name
+  }
+}; 

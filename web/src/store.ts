@@ -1,7 +1,5 @@
 import { createStore } from 'redux';
 import { getProj } from "./actions";
-import { changeProjName } from "./reducers";
+import { appReducer } from "./reducers";
 
-const store = createStore(changeProjName);
-
-store.dispatch(changeProjName(getProj("placeholder"));
+const store = createStore(appReducer);

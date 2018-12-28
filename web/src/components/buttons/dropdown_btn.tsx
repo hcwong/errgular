@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { DropdownBox } from '../dropdown_box';
 
 const svgDown = require("./../../../img/arrow_down.svg");
 

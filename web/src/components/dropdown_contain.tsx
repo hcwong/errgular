@@ -4,8 +4,6 @@ import DropdownBoxContainer from "./dropdown_box_container";
 import DropdownBtnContainer from "./buttons/dropdown_btn_container";
 
 interface Props {
-  currentProj: string;
-  projHandler: any;
   isProjButtonClicked: boolean
 }
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { store } from '../../store';
 
 const svgDown = require("./../../../img/arrow_down.svg");
 
@@ -10,7 +11,7 @@ interface Props {
 export const DropdownBtn = (props: Props) => {
   return (
     <div className="navbar-proj-name bor_1_ff"
-      onClick={() => props.handler()}
+      onClick={() => {console.log(store.getState());props.handler()}}
     >
       {props.btnName}
       <img src={svgDown}/>

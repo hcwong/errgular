@@ -13,7 +13,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  handler: () => dispatch(projButtonClicked)
+  handler: () => dispatch(projButtonClicked())
 });
 
 export default connect(

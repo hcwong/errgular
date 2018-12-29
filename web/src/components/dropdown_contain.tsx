@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { DropdownBox } from './dropdown_box';
-import { DropdownBtn } from './buttons/dropdown_btn';
+import DropdownBoxContainer from "./dropdown_box_container";
+import DropdownBtnContainer from "./buttons/dropdown_btn_container";
 
 interface Props {
   currentProj: string;
@@ -13,22 +13,13 @@ export const DropdownContain = (props: Props) => {
   if (this.isProjButtonClicked) {
     return (
       <div className="pos_rel d_block">
-        <DropdownBtn
-          btnName={this.props.currentProj}
-          handler="place function here"
-        />
-        <DropdownBox
-          options={["test", "test1"]}
-          projHandler={this.props.projHandler}
-        />
+        <DropdownBtnContainer/>
+        <DropdownBoxContainer/>
       </div>
     )
   } else {
     return (
-      <DropdownBtn
-        btnName={this.props.currentProj}
-        handler="place function here"
-      />
+      <DropdownBtnContainer/>
     )
   }
 };

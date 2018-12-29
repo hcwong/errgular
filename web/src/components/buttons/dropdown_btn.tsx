@@ -10,9 +10,9 @@ interface Props {
 export const DropdownBtn = (props: Props) => {
   return (
     <div className="navbar-proj-name bor_1_ff"
-      onClick={() => this.props.handler()}
+      onClick={() => props.handler()}
     >
-      {this.props.btnName}
+      {props.btnName}
       <img src={svgDown}/>
     </div>
   )

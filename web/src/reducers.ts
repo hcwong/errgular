@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import {GET_PROJ, PROJ_BTN_CLICKED} from "./actions";
 
-interface projAction {
-  type: string 
-  projName: string
-}
+// interface projAction {
+//   type: string 
+//   projName: string
+// }
 
 const initialState = {
   currentProj: <string> "Select One",
@@ -19,7 +19,7 @@ export function chooseNameReducer(state = initialState, action: any) {
       });
     case PROJ_BTN_CLICKED:
       return(<any>Object).assign({}, state, {
-        isProjButtonClicked: !action.data
+        isProjButtonClicked: !state.isProjButtonClicked
       });
   }
 }

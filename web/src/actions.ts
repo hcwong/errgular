@@ -6,7 +6,6 @@ export const getProj = (name: string) => ({
   data: name
 });
 
-export const projButtonClicked = (isClicked: boolean) => ({
-  type: PROJ_BTN_CLICKED,
-  data: isClicked
+export const projButtonClicked = () => ({
+  type: PROJ_BTN_CLICKED
 });

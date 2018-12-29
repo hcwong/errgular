@@ -5,7 +5,7 @@ import { getProj } from "../actions";
 
 const getCurrentProj = (name: string) => {
   return name;
-}
+};
 
 const mapDispatchToProps = (dispatch: any) => ({
   projHandler: (name: string) => dispatch(getProj(name))

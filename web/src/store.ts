@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
 import { getProj } from "./actions";
-import { appReducer } from "./reducers";
+import reducer from "./reducers";
 
-const store = createStore(appReducer);
+const store = createStore(reducer);

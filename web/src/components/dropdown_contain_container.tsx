@@ -1,9 +1,22 @@
 import { connect } from "react-redux";
 
 import { DropdownContain } from "./dropdown_contain";
+import { getProj } from "../actions";
 
-// const mapDispatchToProps = dispatch => {
-//   projName: 
-// }
+const getCurrentProj = (name: string) => {
+  return name;
+}
 
-// export const DropdownContainContainer = connect(mapDispatchToProps)(DropdownContain);
+const mapDispatchToProps = (dispatch: any) => ({
+  projHandler: (name: string) => dispatch(getProj(name))
+});
+
+const mapStateToProps = (state: any) => ({
+  currentProj: getCurrentProj(state.currentProj),
+  isProjButtonClicked: state.isProjButtonClicked
+});
+
+export default connect(
+  mapDispatchToProps,
+  mapStateToProps
+)(DropdownContain);

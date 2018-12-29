@@ -1,22 +1,27 @@
 import { combineReducers } from "redux";
-import {GET_PROJ} from "./actions";
+import {GET_PROJ, PROJ_BTN_CLICKED} from "./actions";
 
 interface projAction {
-  type: String 
-  projName: String
+  type: string 
+  projName: string
 }
 
 const initialState = {
-  projName: String,
+  currentProj: <string> "Select One",
+  isProjButtonClicked: <boolean> false
 };
 
-export function appReducer(state = initialState, action: any) {
+export function chooseNameReducer(state = initialState, action: any) {
   switch(action.type) {
     case GET_PROJ:
       return (<any>Object).assign({}, state, {
-        projName: action.projName
+        currentProj: action.data
+      });
+    case PROJ_BTN_CLICKED:
+      return(<any>Object).assign({}, state, {
+        isProjButtonClicked: !action.data
       });
   }
 }
 
-export const reducer = combineReducers(appReducer);
+export default combineReducers(chooseNameReducer);

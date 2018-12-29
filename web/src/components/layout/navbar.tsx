@@ -1,11 +1,9 @@
 import * as React from "react";
 import {SearchBar} from './search_bar';
-import { DropdownContainContainer } from "../dropdown_contain_container";
+import DropdownContainContainer from "../dropdown_contain_container";
 
 interface Props {
-  btnName: string;
   placeholder: string;
-  projHandler: any;
 }
 
 export class Navbar extends React.Component<Props, {}> {
@@ -21,9 +19,7 @@ export class Navbar extends React.Component<Props, {}> {
         </a>
         <ul className="navbar-ul">
           <li className="navbar-li">
-            <DropdownContainContainer
-              projHandler={this.props.projHandler}
-            />
+            <DropdownContainContainer/>
           </li>
           <SearchBar
             placeholder={this.props.placeholder}

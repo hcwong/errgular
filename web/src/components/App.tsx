@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
+import { store } from "./../store";
 import {Home} from './home';
 
 require("./../stylesheets/main.scss");
@@ -14,7 +16,12 @@ class App extends React.Component<{}, {}> {
 }
 
 const mountNode = document.getElementById("app");
-ReactDOM.render(<App />, mountNode);
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>, 
+  mountNode
+);
 
 if (module.hot) {
   module.hot.accept();

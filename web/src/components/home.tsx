@@ -36,9 +36,9 @@ export class Home extends React.Component<{},{}> {
         <Navbar
           placeholder="Search for your Project"
         />
-        <Body
+        {/* <Body
           data={[]}
-        />
+        /> */}
       </div>
     );
   }

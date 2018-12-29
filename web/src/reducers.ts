@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+// import { combineReducers } from "redux";
 import {GET_PROJ, PROJ_BTN_CLICKED} from "./actions";
 
 interface action {
@@ -6,7 +6,7 @@ interface action {
   data?: any;
 }
 
-export function appReducer(state: any, action: action) {
+function appReducer(state: any, action: action) {
   switch(action.type) {
     case GET_PROJ:
       return (<any>Object).assign({}, state, {
@@ -21,4 +21,4 @@ export function appReducer(state: any, action: action) {
   }
 }
 
-export default combineReducers(appReducer);
+export default appReducer;

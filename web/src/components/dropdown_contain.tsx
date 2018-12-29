@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const DropdownContain = (props: Props) => {
-  if (this.isProjButtonClicked) {
+  if (props.isProjButtonClicked) {
     return (
       <div className="pos_rel d_block">
         <DropdownBtnContainer/>

@@ -6,4 +6,4 @@ const initialState = {
   isProjButtonClicked: false
 };
 
-export const store = createStore(reducer, initialState);
+export const store = createStore(reducer, initialState as any);

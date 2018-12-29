@@ -7,5 +7,6 @@ export const getProj = (name: string) => ({
 });
 
 export const projButtonClicked = () => ({
-  type: PROJ_BTN_CLICKED
+  type: PROJ_BTN_CLICKED,
+  data: {}
 });

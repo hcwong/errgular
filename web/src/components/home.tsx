@@ -33,9 +33,7 @@ export class Home extends React.Component<{}, {}> {
   render() {
     return(
       <div className="d_flex_c">
-        <Navbar
-          placeholder="Search for your Project"
-        />
+        <Navbar/>
         <Body
           data={[]}
         />

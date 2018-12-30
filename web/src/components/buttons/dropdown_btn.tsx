@@ -8,6 +8,7 @@ interface Props {
 }
 
 export const DropdownBtn = (props: Props) => {
+  console.log(props);
   return (
     <div className="navbar-proj-name bor_1_ff"
       onClick={() => props.handler()}

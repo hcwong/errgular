@@ -1,15 +1,15 @@
-import * as React from "react";
-import {Display} from "./display";
+import * as React from 'react';
+import { Display } from './display';
 
 interface Props {
-  data: Array<string>
+  data: string[];
 }
 
 export class Body extends React.Component<Props, {}> {
-  constructor(props: Props){
+  constructor(props: Props) {
     super(props);
   }
-  
+
   // Return a flex div with flex div then a 2x2 CSS Grad div
   render() {
     return (

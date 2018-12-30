@@ -1,9 +1,9 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {Navbar} from "./layout/navbar";
-import {Body} from "./body";
+import { Navbar } from './layout/navbar';
+import { Body } from './body';
 
-export class Home extends React.Component<{},{}> {
+export class Home extends React.Component<{}, {}> {
   constructor() {
     super({}, {});
     // this.getProjData = this.getProjData.bind(this);
@@ -36,10 +36,10 @@ export class Home extends React.Component<{},{}> {
         <Navbar
           placeholder="Search for your Project"
         />
-        {/* <Body
+        <Body
           data={[]}
-        /> */}
+        />
       </div>
     );
   }
-};
+}

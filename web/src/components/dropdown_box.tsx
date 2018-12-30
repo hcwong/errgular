@@ -10,7 +10,7 @@ export const DropdownBox = (props: Props) => {
   const options = placeholderOptions.map(
     (option: string) => 
       <li 
-        className="d_flex_r txt_12 font_white pad_4 cur_pointer bor_bot_ff"
+        className="d_flex_r txt_12 font_white pad_4 cur_pointer bor_bot_ff z_ind_l1"
         onClick={() => props.handler(option)}
       >
         {option}

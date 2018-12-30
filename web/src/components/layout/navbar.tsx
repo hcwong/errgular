@@ -1,6 +1,6 @@
-import * as React from "react";
-import {SearchBar} from './search_bar';
-import DropdownContainContainer from "../dropdown_contain_container";
+import * as React from 'react';
+import { SearchBar } from './search_bar';
+import DropdownContainContainer from '../dropdown_contain_container'; // tslint:disable-line
 
 interface Props {
   placeholder: string;
@@ -18,9 +18,7 @@ export class Navbar extends React.Component<Props, {}> {
           Errgular
         </a>
         <ul className="navbar-ul">
-          <li className="navbar-li">
-            <DropdownContainContainer/>
-          </li>
+          <DropdownContainContainer/>
           <SearchBar
             placeholder={this.props.placeholder}
           />
@@ -28,4 +26,4 @@ export class Navbar extends React.Component<Props, {}> {
       </nav>
     );
   }
-};
+}

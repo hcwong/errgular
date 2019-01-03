@@ -1,9 +1,9 @@
 import { createStore } from 'redux';
-import reducer from "./reducers";
+import reducers from './reducers';
 
 const initialState = {
-  currentProj: "Select One",
-  isProjButtonClicked: false
+  currentProj: 'Select One',
+  isProjButtonClicked: false,
 };
 
-export const store = createStore(reducer, initialState as any);
+export const store = createStore(reducers, initialState as any);

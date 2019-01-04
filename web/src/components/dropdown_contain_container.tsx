@@ -13,9 +13,9 @@ import { DropdownContain } from "./dropdown_contain";
 
 const mapStateToProps = (state: any) => ({
   // currentProj: getCurrentProj(state.currentProj),
-  isProjButtonClicked: state.isProjButtonClicked
+  isProjButtonClicked: state.isProjButtonClicked,
 });
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
 )(DropdownContain);

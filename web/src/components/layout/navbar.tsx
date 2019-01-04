@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Navbar as NavbarComponent } from 'react-bootstrap';
+import { Navbar as NavbarComponent, Nav, NavDropdown } from 'react-bootstrap';
 import { SearchBar } from './search_bar';
 import DropdownContainContainer from '../dropdown_contain_container'; // tslint:disable-line
 
@@ -33,12 +33,19 @@ interface Props {
 // tslint:disable-next-line
 export const Navbar = () => {
   return (
-    <NavbarComponent className="navbar">
+    <NavbarComponent
+      className="navbar navbar-fixed-top navbar-light bg-dark no-margins font-white">
       <NavbarComponent.Header>
-        <NavbarComponent.Brand>
-          <a>React-Bootstrap</a>
+        <NavbarComponent.Brand className="navbar-brand">
+          <a>Errgular</a>
         </NavbarComponent.Brand>
       </NavbarComponent.Header>
+      <Nav>
+        <DropdownContainContainer/>
+        <SearchBar
+          placeholder="placeholder"
+        />
+      </Nav>
     </NavbarComponent>
   );
 };

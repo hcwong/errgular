@@ -1,112 +1,118 @@
 // Contains common CSS stylings that will be used by many components
 
-.d_flex_r{
-  @include display_flex(row);
+.d-flex-r{
+  @include display-flex(row);
 }
 
-.d_flex_c{
-  @include display_flex(column);
+.d-flex-c{
+  @include display-flex(column);
 }
 
-.d_abs_c {
+.d-abs-c {
   display: flex;
   flex-direction: column;
   position: absolute;
 }
 
-.d_abs_r {
+.d-abs-r {
   display: flex;
   flex-direction: row;
   position: absolute;
 }
 
-.d_block {
+.d-block {
   display: block;
 }
 
 // TEXT
 
-.txt_12 {
+.txt-12 {
   font-size: 12px;
 }
 
-.txt_14 {
+.txt-14 {
   font-size: 14px;
 }
 
-.font_black {
+.font-black {
   color: #000;
 }
 
-.font_white {
+.font-white {
   color: #fff;
 }
 
 // WIDTH
 
-.wid_100 {
+.wid-100 {
   width: 100%;
 }
 
-.wid_inher{
+.wid-inher{
   width: inherit;
 }
 
 // BACKGROUNDS
 
-.bg_00 {
+.bg-00 {
   background-color: #000;
 }
 
-.bg_dark_b {
+.bg-dark-b {
   background-color: #170e63;
 }
 
-.bg_ff {
+.bg-ff {
   background-color: #fff;
 }
 
 // POSITION
 
-.pos_rel {
+.pos-rel {
   position: relative;
 }
 
 // Z-INDEX
 
-.z_ind_l1 {
+.z-ind-l1 {
   z-index: 100;
 }
 
 // PADDING
 
-.pad_0 {
+.pad-0 {
   padding: 0px;
 }
 
-.pad_4 {
+.pad-4 {
   padding: 4px;
 }
 
 // BORDER
 
-.bor_1_00 {
+.bor-1-00 {
   border: 1px solid #000;
 }
 
-.bor_1_ff {
+.bor-1-ff {
   border: 1px solid #fff;
 }
 
-.bor_top_none {
+.bor-top-none {
   border-top: none;
 }
 
-.bor_bot_ff {
+.bor-bot-ff {
   border-bottom: 1px solid #fff;
 }
+
+// MARGINS
+.no-margins {
+  margin: 0px;
+}
+
 // POINTER
 
-.cur_pointer {
+.cur-pointer {
   cursor: pointer;
 }

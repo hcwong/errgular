@@ -1,3 +1,14 @@
+.navbar-brand {
+  &:hover {
+    opacity: 0.5
+  }
+}
+
+.container {
+  @extend %no-margins;
+}
+
+
 // .navbar{ 
 //   color: #fff;
 //   height: 56px;

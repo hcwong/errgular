@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { DropdownContain } from "./dropdown_contain";
+import { DropdownContain } from './dropdown_contain';
 // import { getProj } from "../actions";
 
 // const getCurrentProj = (name: string) => {

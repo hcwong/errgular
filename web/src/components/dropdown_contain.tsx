@@ -1,26 +1,48 @@
 import * as React from 'react'
 
-import DropdownBoxContainer from "./dropdown_box_container";
-import DropdownBtnContainer from "./buttons/dropdown_btn_container";
+// import DropdownBoxContainer from "./dropdown_box_container";
+// import DropdownBtnContainer from "./buttons/dropdown_btn_container";
+import { NavDropdown, MenuItem } from 'react-bootstrap';
 
 interface Props {
-  isProjButtonClicked: boolean
+  isProjButtonClicked: boolean;
+  currentProj: string;
+  handler: (option: string) => void;
 }
 
 export const DropdownContain = (props: Props) => {
-  if (props.isProjButtonClicked) {
-    return (
-      <div className="pos_rel d_block">
-        <DropdownBtnContainer/>
-        <DropdownBoxContainer/>
-      </div>
-    )
-  } else {
-    return (
-      <DropdownBtnContainer/>
-    )
-  }
-};
+  const placeholderOptions = ["test1", "test2"];
+  const options = placeholderOptions.map(
+    (option: string) => 
+      <MenuItem 
+        onClick={() => props.handler(option)}
+      >
+        {option}
+      </MenuItem>
+  );
+  return (
+    <NavDropdown
+      title = {props.currentProj}
+      id="basic-nav-dropdown"
+    >
+      {options}
+    </NavDropdown>
+  )
+}
+
+// export const DropdownContain = (props: Props) => {
+//   if (props.isProjButtonClicked) {
+//     return (
+//         <DropdownBtnContainer/>
+//         <DropdownBoxContainer/>
+//       </div>
+//     )
+//   } else {
+//     return (
+//       <DropdownBtnContainer/>
+//     )
+//   }
+// };
 
 
 // export class DropdownContain extends React.Component<Props, State> {
@@ -42,7 +64,6 @@ export const DropdownContain = (props: Props) => {
 //   render() {
 //     if (this.state.clicked) {
 //       return (
-//         <div className="pos_rel d_block">
 //           <DropdownBtn
 //             btnName={this.props.currentProj}
 //             handler="place function here"

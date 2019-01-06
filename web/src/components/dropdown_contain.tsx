@@ -5,7 +5,7 @@ import * as React from 'react'
 import { NavDropdown, MenuItem } from 'react-bootstrap';
 
 interface Props {
-  isProjButtonClicked: boolean;
+  // isProjButtonClicked: boolean;
   currentProj: string;
   handler: (option: string) => void;
 }
@@ -15,6 +15,7 @@ export const DropdownContain = (props: Props) => {
   const options = placeholderOptions.map(
     (option: string) => 
       <MenuItem 
+        className="dropdown-item"
         onClick={() => props.handler(option)}
       >
         {option}
@@ -24,6 +25,8 @@ export const DropdownContain = (props: Props) => {
     <NavDropdown
       title = {props.currentProj}
       id="basic-nav-dropdown"
+      className="nav-item dropdown"
+      eventKey={1}
     >
       {options}
     </NavDropdown>

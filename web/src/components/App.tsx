@@ -1,11 +1,11 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-import { store } from "./../store";
-import {Home} from './home';
+import { store } from './../store';
+import { Home } from './home';
 
-require("./../stylesheets/main.scss");
+require('./../stylesheets/main.scss');
 
 class App extends React.Component<{}, {}> {
   render() {
@@ -15,12 +15,12 @@ class App extends React.Component<{}, {}> {
   }
 }
 
-const mountNode = document.getElementById("app");
+const mountNode = document.getElementById('app');
 ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>, 
-  mountNode
+  </Provider>,
+  mountNode,
 );
 
 if (module.hot) {

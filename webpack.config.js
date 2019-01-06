@@ -22,7 +22,8 @@ const config = {
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
       { exclude: /node_modules/ },
-      { test: /\.svg$/, use: [{loader: "file-loader", options: {name: "./arrow_down.svg"}}]}
+      // { test: /\.svg$/, use: [{loader: "file-loader", options: {name: "./arrow_down.svg"}}]},
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ]
   },
 };

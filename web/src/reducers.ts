@@ -13,10 +13,10 @@ function appReducer(state: any, action: action) {
       return (<any>Object).assign({}, state, {
         currentProj: action.data,
       });
-    case PROJ_BTN_CLICKED:
-      return (<any>Object).assign({}, state, {
-        isProjButtonClicked: !state.isProjButtonClicked,
-      });
+    // case PROJ_BTN_CLICKED:
+    //   return (<any>Object).assign({}, state, {
+    //     isProjButtonClicked: !state.isProjButtonClicked,
+    //   });
     default:
       return state;
   }

@@ -4,3 +4,10 @@
   height: 100%;
   margin-top: 51px;
 }
+
+.display {
+  @include display_flex(column);
+  height: 100vh;
+  text-align: center;
+  justify-content: center;
+}

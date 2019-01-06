@@ -3,7 +3,7 @@ import reducers from './reducers';
 
 const initialState = {
   currentProj: 'Select One',
-  isProjButtonClicked: false,
+  // isProjButtonClicked: false,
 };
 
 export const store = createStore(reducers, initialState as any);

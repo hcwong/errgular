@@ -1,17 +1,20 @@
-import * as React from "react";
-import {DisplayBox} from "./displaybox";
+import * as React from 'react';
+import { DisplayBox } from './displaybox';
 
 interface Props {
-  data: Array<string>,
+  currentProj: string;
 }
 
-export class Display extends React.Component<Props, {}> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
-    return(
+// tslint:disable-next-line
+export const Display = (props: Props) => {
+  if (props.currentProj === 'Select One') {
+    return (
+      <div>
+        Select a Project
+      </div>
+    );
+  } else { // tslint:disable-line
+    return (
       <div className="grid-container two-by-two">
         <DisplayBox
           section=".top-right"
@@ -28,4 +31,26 @@ export class Display extends React.Component<Props, {}> {
       </div>
     );
   }
-}
+};
+
+// export class Display extends React.Component<{}, {}> {
+
+//   render() {
+//     return(
+//       <div className="grid-container two-by-two">
+//         <DisplayBox
+//           section=".top-right"
+//         />
+//         <DisplayBox
+//           section=".top-left"
+//         />
+//         <DisplayBox
+//           section=".bottom-left"
+//         />
+//         <DisplayBox
+//           section=".bottom-right"
+//         />
+//       </div>
+//     );
+//   }
+// }

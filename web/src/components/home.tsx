@@ -34,9 +34,7 @@ export class Home extends React.Component<{}, {}> {
     return(
       <div className="d_flex_c">
         <Navbar/>
-        <Body
-          data={[]}
-        />
+        <Body/>
       </div>
     );
   }

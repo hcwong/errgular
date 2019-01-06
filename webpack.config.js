@@ -16,6 +16,8 @@ const config = {
     extensions: [".ts", ".tsx", ".js", ".json"]
   },
 
+  target: 'node',
+
   module: {
     rules: [
       { test: /\.tsx?$/, loader: "awesome-typescript-loader" },

@@ -7,8 +7,8 @@ interface Props {
 // tslint:disable-next-line
 export const DisplayBox = (props: Props) => {
   return(
-    <div className={'grid-box'+props.section}>
+    <div className={`grid-box${props.section}`}>
       Placeholder Text
     </div>
   );
-}
+};

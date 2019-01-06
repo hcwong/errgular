@@ -105,8 +105,16 @@ func checkErrorExist(name string, db tables.ConnPool) (err error) {
 	return nil
 }
 
+// WIP: Get the data and return it to the view
 func GetAllErrorInstances(name string, db tables.ConnPool) sqlx.Rows {
+	type errorExample struct {
+	}
+
+	var all_errors []errorExample
+
 	rows, _ := db.Db.Queryx(qGetAllErrors, name)
+	defer rows.Close()
+
 	return *rows
 }
 

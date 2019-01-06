@@ -62,5 +62,5 @@ func ChooseProj(writer http.ResponseWriter, req *http.Request) {
 	}
 	// Grab the project details from the database
 	projData := GetAllErrorInstances(r.Name, Database)
-
+	defer projData.Close()
 }

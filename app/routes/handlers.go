@@ -51,6 +51,8 @@ func AddEvent(writer http.ResponseWriter, req *http.Request) {
 
 // ChooseProj is a to choose the project
 func ChooseProj(writer http.ResponseWriter, req *http.Request) {
+	// WIP: Bug with the request processing
+	var r ProjReq
 	decoder := json.NewDecoder(req.Body)
 	decodeErr := decoder.Decode(&r)
 	if decodeErr != nil {
@@ -58,8 +60,8 @@ func ChooseProj(writer http.ResponseWriter, req *http.Request) {
 		writer.Write([]byte("400 Bad Request"))
 		log.Println(decodeErr)
 		log.Println("Request Body must be incorrect")
+		log.Fatal(decodeErr)
 	}
 	// Grab the project details from the database
 	projData := GetAllErrorInstances(r.Name, Database)
-
 }

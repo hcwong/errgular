@@ -3,6 +3,7 @@ package routes
 import (
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/hcwong/errgular/app/tables"
 	"github.com/jmoiron/sqlx"
@@ -20,6 +21,12 @@ const qChooseProj = "select * from errors where project_name=$1"
 const qGetAllErrors = "select * from $1"
 
 var Database tables.ConnPool
+
+type errorExample struct {
+	error_code    int
+	description   string
+	incident_time time.Time
+}
 
 // InitializeDb creates the db conn and creates the necessary tables if they are not created
 func InitializeDb() {
@@ -105,20 +112,25 @@ func checkErrorExist(name string, db tables.ConnPool) (err error) {
 	return nil
 }
 
-// WIP: Get the data and return it to the view
-func GetAllErrorInstances(name string, db tables.ConnPool) sqlx.Rows {
-	type errorExample struct {
-	}
-
-	var all_errors []errorExample
+func GetAllErrorInstances(name string, db tables.ConnPool) []errorExample {
+	var allErrors []errorExample
 
 	rows, _ := db.Db.Queryx(qGetAllErrors, name)
 	defer rows.Close()
 	for rows.Next() {
-
+		var errorInstance errorExample
+		err := rows.Scan(&errorInstance)
+		if err != nil {
+			log.Fatal(err)
+		}
+		allErrors = append(allErrors, errorInstance)
+	}
+	err := rows.Err()
+	if err != nil {
+		log.Fatal(err)
 	}
 
-	return *rows
+	return allErrors
 }
 
 func addNewErrortoErrors(db tables.ConnPool, name string, code int) (err error) {

@@ -51,7 +51,6 @@ func AddEvent(writer http.ResponseWriter, req *http.Request) {
 
 // ChooseProj is a to choose the project
 func ChooseProj(writer http.ResponseWriter, req *http.Request) {
-	var r ProjReq
 	decoder := json.NewDecoder(req.Body)
 	decodeErr := decoder.Decode(&r)
 	if decodeErr != nil {
@@ -62,5 +61,5 @@ func ChooseProj(writer http.ResponseWriter, req *http.Request) {
 	}
 	// Grab the project details from the database
 	projData := GetAllErrorInstances(r.Name, Database)
-	defer projData.Close()
+
 }

@@ -114,6 +114,9 @@ func GetAllErrorInstances(name string, db tables.ConnPool) sqlx.Rows {
 
 	rows, _ := db.Db.Queryx(qGetAllErrors, name)
 	defer rows.Close()
+	for rows.Next() {
+
+	}
 
 	return *rows
 }

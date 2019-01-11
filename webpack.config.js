@@ -16,7 +16,7 @@ const config = {
     extensions: [".ts", ".tsx", ".js", ".json"]
   },
 
-  target: 'node',
+  target: 'web',
 
   module: {
     rules: [

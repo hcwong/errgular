@@ -18,7 +18,7 @@ const qInsertNewEvent = "insert into %s (error_code, description) values ($1, $2
 const qCheckErrorTypeExists = "select * from errors where project_name=$1 and error_code=$2"
 const qAddErrorTypeToErrors = "insert into errors (project_name, error_code) values ($1, $2)"
 const qChooseProj = "select * from errors where project_name=$1"
-const qGetAllErrors = "select * from ?"
+const qGetAllErrors = "select * from $1"
 
 var Database tables.ConnPool
 
@@ -115,12 +115,15 @@ func checkErrorExist(name string, db tables.ConnPool) (err error) {
 func GetAllErrorInstances(name string, db tables.ConnPool) []errorExample {
 	var allErrors []errorExample
 
+	fmt.Println(name)	
 	// bug with the db query
 	rows, _ := db.Db.Queryx(qGetAllErrors, name)
 	defer rows.Close()
 	for rows.Next() {
 		var errorInstance errorExample
-		err := rows.Scan(&errorInstance)
+		err := rows.Scan(&errorInstance.error_code,
+						 &errorInstance.description,
+						 &errorInstance.incident_time)
 		if err != nil {
 			log.Fatal(err)
 		}

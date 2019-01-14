@@ -4,7 +4,7 @@ const svgDown = require("./../../../img/arrow_down.svg");
 
 interface Props {
   btnName: string;
-  handler: any
+  handler: any;
 }
 
 export const DropdownBtn = (props: Props) => {

@@ -18,7 +18,7 @@ const qInsertNewEvent = "insert into %s (error_code, description) values ($1, $2
 const qCheckErrorTypeExists = "select * from errors where project_name=$1 and error_code=$2"
 const qAddErrorTypeToErrors = "insert into errors (project_name, error_code) values ($1, $2)"
 const qChooseProj = "select * from errors where project_name=$1"
-const qGetAllErrors = "select * from $1"
+const qGetAllErrors = "select * from %s"
 
 var Database tables.ConnPool
 
@@ -26,6 +26,11 @@ type errorExample struct {
 	error_code    int
 	description   string
 	incident_time time.Time
+}
+
+type NullTime struct {
+	Time time.Time
+	Valid bool
 }
 
 // InitializeDb creates the db conn and creates the necessary tables if they are not created
@@ -114,26 +119,30 @@ func checkErrorExist(name string, db tables.ConnPool) (err error) {
 
 func GetAllErrorInstances(name string, db tables.ConnPool) []errorExample {
 	var allErrors []errorExample
+	var incident_time NullTime
+	var error_code int
+	var description string
 
-	fmt.Println(name)	
 	// bug with the db query
-	rows, _ := db.Db.Queryx(qGetAllErrors, name)
+	rows, _ := db.Db.Query(fmt.Sprintf(qGetAllErrors, name))
 	defer rows.Close()
 	for rows.Next() {
-		var errorInstance errorExample
-		err := rows.Scan(&errorInstance.error_code,
-						 &errorInstance.description,
-						 &errorInstance.incident_time)
+		err := rows.Scan(&error_code,
+						 &description,
+						 &incident_time)
 		if err != nil {
 			log.Fatal(err)
 		}
+		errorInstance := errorExample{
+			error_code: error_code,
+			description: description,
+			incident_time: incident_time.Time}
 		allErrors = append(allErrors, errorInstance)
 	}
 	err := rows.Err()
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	return allErrors
 }
 

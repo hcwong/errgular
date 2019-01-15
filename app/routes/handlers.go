@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"fmt"
 )
 
 // ErrgularReq - JSON structure of the POST request body from the application
@@ -55,7 +56,9 @@ func ChooseProj(writer http.ResponseWriter, req *http.Request) {
 	}
 	// Grab the project details from the database
 	responseData := GetAllErrorInstances(projName[0], Database)
+	fmt.Println(responseData)
 	jsonResponse, _ := json.Marshal(responseData)
+	fmt.Println(string(jsonResponse))
 	writer.Header().Set("Content-Type", "application/json")
 	writer.Write(jsonResponse)
 }

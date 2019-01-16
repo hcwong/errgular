@@ -23,14 +23,9 @@ const qGetAllErrors = "select * from %s"
 var Database tables.ConnPool
 
 type errorExample struct {
-	error_code    int
-	description   string
-	incident_time time.Time
-}
-
-type NullTime struct {
-	Time time.Time
-	Valid bool
+	Error_code    int
+	Description   string
+	Incident_time string
 }
 
 // InitializeDb creates the db conn and creates the necessary tables if they are not created
@@ -119,11 +114,10 @@ func checkErrorExist(name string, db tables.ConnPool) (err error) {
 
 func GetAllErrorInstances(name string, db tables.ConnPool) []errorExample {
 	var allErrors []errorExample
-	var incident_time NullTime
+	var incident_time time.Time
 	var error_code int
 	var description string
 
-	// bug with the db query
 	rows, _ := db.Db.Query(fmt.Sprintf(qGetAllErrors, name))
 	defer rows.Close()
 	for rows.Next() {
@@ -136,7 +130,7 @@ func GetAllErrorInstances(name string, db tables.ConnPool) []errorExample {
 		errorInstance := errorExample{
 			error_code: error_code,
 			description: description,
-			incident_time: incident_time.Time}
+			incident_time: incident_time.String()}
 		allErrors = append(allErrors, errorInstance)
 	}
 	err := rows.Err()

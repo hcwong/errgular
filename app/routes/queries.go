@@ -128,9 +128,9 @@ func GetAllErrorInstances(name string, db tables.ConnPool) []errorExample {
 			log.Fatal(err)
 		}
 		errorInstance := errorExample{
-			error_code: error_code,
-			description: description,
-			incident_time: incident_time.String()}
+			Error_code: error_code,
+			Description: description,
+			Incident_time: incident_time.String()}
 		allErrors = append(allErrors, errorInstance)
 	}
 	err := rows.Err()

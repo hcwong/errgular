@@ -12,7 +12,8 @@ interface Props {
 
 export const DropdownContain = (props: Props) => {
   const placeholderOptions = ["test1", "test2"];
-  const options = placeholderOptions.map(
+  const placeholderUrl = "http://localhost";
+	const options = placeholderOptions.map(
     (option: string) => 
       <MenuItem 
         className="dropdown-item"
@@ -21,6 +22,24 @@ export const DropdownContain = (props: Props) => {
         {option}
       </MenuItem>
   );
+
+	// WIP
+	const handleClick = async (name: string) {
+		const projData = getProjData(name);
+		// WIP: Change the action
+	}
+
+	// WIP
+	const getProjData = async (name: string) => {
+		try {
+			const response = await fetch(`${placeholderUrl}/chooseProj?projName=${name}`);
+			const projData = response.json();
+			return projData;
+		} catch (error: Error) {
+			console.log("Failed to get project Data");
+			return {};
+		}
+	};
 	
   return (
     <NavDropdown

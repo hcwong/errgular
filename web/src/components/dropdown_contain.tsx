@@ -21,6 +21,7 @@ export const DropdownContain = (props: Props) => {
         {option}
       </MenuItem>
   );
+	
   return (
     <NavDropdown
       title = {props.currentProj}

@@ -3,6 +3,7 @@ import reducers from './reducers';
 
 const initialState = {
   currentProj: 'Select One',
+  projData: any
   // isProjButtonClicked: false,
 };
 

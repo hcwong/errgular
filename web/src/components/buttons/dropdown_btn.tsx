@@ -16,8 +16,8 @@ export const DropdownBtn = (props: Props) => {
       {props.btnName}
       <img src={svgDown}/>
     </div>
-  )
-}
+  );
+};
 
 // export class DropdownBtn extends React.Component<Props, any> {
 //   constructor(props: Props) {

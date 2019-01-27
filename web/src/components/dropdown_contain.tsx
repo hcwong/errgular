@@ -25,8 +25,15 @@ export const DropdownContain = (props: Props) => {
 
 	// WIP
 	const handleClick = async (name: string) {
-		const projData = getProjData(name);
+		try {
+		
+		} catch (error: Error) {
+
+
+		}
+		const projData = await getProjData(name);
 		// WIP: Change the action
+		props.handler()
 	}
 
 	// WIP

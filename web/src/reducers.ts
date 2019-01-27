@@ -12,6 +12,7 @@ function appReducer(state: any, action: action) {
     case GET_PROJ:
       return (<any>Object).assign({}, state, {
         currentProj: action.data,
+        projData: action.projData,
       });
     // case PROJ_BTN_CLICKED:
     //   return (<any>Object).assign({}, state, {

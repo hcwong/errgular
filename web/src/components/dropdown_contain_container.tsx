@@ -19,7 +19,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  handler: ((name: string) => dispatch(getProj(name))),
+  handler: ((name: string, projData: any) => dispatch(getProj(name, projData))),
 });
 
 export default connect(

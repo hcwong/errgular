@@ -5,6 +5,7 @@ import { GET_PROJ, PROJ_BTN_CLICKED } from './actions';
 interface action {
   type: string;
   data?: any;
+  projData: any;
 }
 
 function appReducer(state: any, action: action) {

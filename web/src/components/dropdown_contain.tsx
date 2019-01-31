@@ -7,47 +7,46 @@ import { NavDropdown, MenuItem } from 'react-bootstrap';
 interface Props {
   // isProjButtonClicked: boolean;
   currentProj: string;
-  handler: (option: string) => void;
+  handler: (option: string, projData: any) => void;
 }
 
 export const DropdownContain = (props: Props) => {
   const placeholderOptions = ["test1", "test2"];
   const placeholderUrl = "http://localhost";
-	const options = placeholderOptions.map(
-    (option: string) => 
-      <MenuItem 
+  const options = placeholderOptions.map(
+    (option: string) =>
+      <MenuItem
         className="dropdown-item"
-        onClick={() => props.handler(option)}
+        onClick={() => handleClick(option)}
       >
         {option}
       </MenuItem>
   );
 
-	// WIP
-	const handleClick = async (name: string) {
-		try {
-		
-		} catch (error: Error) {
+  // WIP
+  const handleClick = async (name: string) => {
+    try {
 
+    } catch (error) {
 
-		}
-		const projData = await getProjData(name);
-		// WIP: Change the action
-		props.handler()
-	}
+    }
+    const projData = await getProjData(name);
+    // WIP: Change the action
+    props.handler(name, projData);
+  };
 
-	// WIP
-	const getProjData = async (name: string) => {
-		try {
-			const response = await fetch(`${placeholderUrl}/chooseProj?projName=${name}`);
-			const projData = response.json();
-			return projData;
-		} catch (error: Error) {
-			console.log("Failed to get project Data");
-			return {};
-		}
-	};
-	
+  // WIP
+  const getProjData = async (name: string) => {
+    try {
+      const response = await fetch(`${placeholderUrl}/chooseProj?projName=${name}`);
+      const projData = response.json();
+      return projData;
+    } catch (error) {
+      console.log("Failed to get project Data");
+      return {};
+    }
+  };
+
   return (
     <NavDropdown
       title = {props.currentProj}
@@ -57,8 +56,8 @@ export const DropdownContain = (props: Props) => {
     >
       {options}
     </NavDropdown>
-  )
-}
+  );
+};
 
 // export const DropdownContain = (props: Props) => {
 //   if (props.isProjButtonClicked) {

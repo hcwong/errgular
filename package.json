@@ -26,6 +26,7 @@
     "dev": "webpack-dev-server --content-base=web/dist --inline --hot"
   },
   "dependencies": {
+    "@types/node": "^10.12.18",
     "@types/react-bootstrap": "^0.32.15",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.4",

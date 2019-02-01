@@ -1,5 +1,4 @@
-// import { combineReducers } from "redux";
-import { GET_PROJ, PROJ_BTN_CLICKED } from './actions';
+import { GET_PROJ } from './actions';
 
 // tslint:disable-next-line
 interface action {

@@ -18,20 +18,3 @@ export const DropdownBtn = (props: Props) => {
     </div>
   );
 };
-
-// export class DropdownBtn extends React.Component<Props, any> {
-//   constructor(props: Props) {
-//     super(props);
-//   }
-
-//   render() {
-//     return(
-//       <div className="navbar-proj-name bor_1_ff"
-//         onClick={() => this.props.handler()}
-//       >
-//         {this.props.btnName}
-//         <img src={svgDown}/>
-//       </div>
-//     );
-//   }
-// };

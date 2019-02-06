@@ -14,6 +14,7 @@ export const Display = (props: Props) => {
       </div>
     );
   } else { // tslint:disable-line
+    console.log(props);
     return (
       <div className="grid-container two-by-two">
         <DisplayBox
@@ -32,25 +33,3 @@ export const Display = (props: Props) => {
     );
   }
 };
-
-// export class Display extends React.Component<{}, {}> {
-
-//   render() {
-//     return(
-//       <div className="grid-container two-by-two">
-//         <DisplayBox
-//           section=".top-right"
-//         />
-//         <DisplayBox
-//           section=".top-left"
-//         />
-//         <DisplayBox
-//           section=".bottom-left"
-//         />
-//         <DisplayBox
-//           section=".bottom-right"
-//         />
-//       </div>
-//     );
-//   }
-// }

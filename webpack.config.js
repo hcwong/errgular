@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 const config = {
   entry: './web/src/components/App.tsx',
@@ -26,8 +27,14 @@ const config = {
       { exclude: /node_modules/ },
       // { test: /\.svg$/, use: [{loader: "file-loader", options: {name: "./arrow_down.svg"}}]},
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
-    ]
+    ],
   },
+
+  plugins: [
+    new Dotenv({
+      path: './web/.env'
+    })
+  ]
 };
 
 module.exports = config;

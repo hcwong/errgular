@@ -5,9 +5,6 @@ import { Provider } from 'react-redux';
 import { store } from './../store';
 import { Home } from './home';
 
-// require('dotenv').config();
-
-// require('./../stylesheets/main.scss');
 import './../stylesheets/main.scss';
 
 class App extends React.Component<{}, {}> {

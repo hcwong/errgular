@@ -1,7 +1,5 @@
-import * as React from 'react'
+import * as React from 'react';
 
-// import DropdownBoxContainer from "./dropdown_box_container";
-// import DropdownBtnContainer from "./buttons/dropdown_btn_container";
 import { NavDropdown, MenuItem } from 'react-bootstrap';
 
 interface Props {
@@ -12,7 +10,6 @@ interface Props {
 
 export const DropdownContain = (props: Props) => {
   const placeholderOptions = ["test1", "test2"];
-  const placeholderUrl = "http://localhost";
   const options = placeholderOptions.map(
     (option: string) =>
       <MenuItem
@@ -23,28 +20,23 @@ export const DropdownContain = (props: Props) => {
       </MenuItem>,
   );
 
-  // WIP
   const handleClick = async (name: string) => {
     try {
-
+      const projData = await getProjData(name);
+      props.handler(name, projData);
     } catch (error) {
-
+      console.log('Error while handling project selection click');
     }
-    const projData = await getProjData(name);
-    // WIP: Change the action
-    props.handler(name, projData);
   };
 
-  // WIP
   const getProjData = async (name: string) => {
     try {
-      // const response = await fetch(`${placeholderUrl}/chooseProj?projName=${name}`);
-      // const projData = response.json();
-      // WIP: dummy data to change once the server is up and running
-      const projData = {testing: "testing"};
+      const SERVER_URL = process.env.SERVER_URL;
+      const response = await fetch(`${SERVER_URL}/chooseProj?projName=${name}`);
+      const projData = response.json();
       return projData;
     } catch (error) {
-      console.log("Failed to get project Data");
+      console.log('Failed to get project Data');
       return {};
     }
   };

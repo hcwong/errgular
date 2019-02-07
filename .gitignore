@@ -11,8 +11,8 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# env file
-.env
+# env files
+*.env
 
 node_modules/
 

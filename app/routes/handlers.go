@@ -2,9 +2,9 @@ package routes
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
-	"fmt"
 )
 
 // ErrgularReq - JSON structure of the POST request body from the application
@@ -12,9 +12,6 @@ type ErrgularReq struct {
 	Name   string
 	Code   int
 	ErrMsg string
-}
-
-type ProjData struct {
 }
 
 // HomeHandler handles '\'

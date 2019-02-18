@@ -8,6 +8,7 @@ interface Props {
   handler: (option: string, projData: any) => void;
 }
 
+// WIP: Something wrong with the async stuff here
 export const DropdownContain = (props: Props) => {
   const placeholderOptions = ["test1", "test2"];
   const options = placeholderOptions.map(
@@ -32,10 +33,11 @@ export const DropdownContain = (props: Props) => {
   const getProjData = async (name: string) => {
     try {
       const SERVER_URL = process.env.SERVER_URL;
-      const response = await fetch(`${SERVER_URL}/chooseProj?projName=${name}`);
+      const response = await fetch(`http://${SERVER_URL}/proj?projName=${name}`);
       const projData = response.json();
       return projData;
     } catch (error) {
+      console.log(error);
       console.log('Failed to get project Data');
       return {};
     }

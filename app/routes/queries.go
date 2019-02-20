@@ -122,14 +122,14 @@ func GetAllErrorInstances(name string, db tables.ConnPool) []errorExample {
 	defer rows.Close()
 	for rows.Next() {
 		err := rows.Scan(&error_code,
-						 &description,
-						 &incident_time)
+			&description,
+			&incident_time)
 		if err != nil {
 			log.Fatal(err)
 		}
 		errorInstance := errorExample{
-			Error_code: error_code,
-			Description: description,
+			Error_code:    error_code,
+			Description:   description,
 			Incident_time: incident_time.String()}
 		allErrors = append(allErrors, errorInstance)
 	}

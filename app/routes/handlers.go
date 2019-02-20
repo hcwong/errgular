@@ -45,6 +45,15 @@ func AddEvent(writer http.ResponseWriter, req *http.Request) {
 
 // ChooseProj is a to choose the project
 func ChooseProj(writer http.ResponseWriter, req *http.Request) {
+	// recover in case of bad read
+	defer func() {
+		if r := recover(); r != nil {
+			jsonResponse, _ := json.Marshal("{}")
+			writer.Header().Set("Content-Type", "application/json")
+			writer.Write(jsonResponse)
+		}
+	}()
+
 	projName, ok := req.URL.Query()["projName"]
 	if !ok {
 		writer.WriteHeader(http.StatusBadRequest)

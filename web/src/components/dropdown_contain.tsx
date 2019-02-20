@@ -8,9 +8,8 @@ interface Props {
   handler: (option: string, projData: any) => void;
 }
 
-// WIP: Something wrong with the async stuff here
 export const DropdownContain = (props: Props) => {
-  const placeholderOptions = ["test1", "test2"];
+  const placeholderOptions = ["error1", "error2"]; // hardcoded values
   const options = placeholderOptions.map(
     (option: string) =>
       <MenuItem
@@ -21,6 +20,7 @@ export const DropdownContain = (props: Props) => {
       </MenuItem>,
   );
 
+  // TODO: Might also want to refactor
   const handleClick = async (name: string) => {
     try {
       const projData = await getProjData(name);
@@ -30,11 +30,13 @@ export const DropdownContain = (props: Props) => {
     }
   };
 
+  // TODO: Refactor out of this component
   const getProjData = async (name: string) => {
     try {
       const SERVER_URL = process.env.SERVER_URL;
       const response = await fetch(`http://${SERVER_URL}/proj?projName=${name}`);
       const projData = response.json();
+      console.log(projData);
       return projData;
     } catch (error) {
       console.log(error);

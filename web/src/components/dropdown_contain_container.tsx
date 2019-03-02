@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 
 import { DropdownContain } from './dropdown_contain';
-import { getProj } from '../actions';
+import { getProjData } from '../actions';
 
 const mapStateToProps = (state: any) => ({
   currentProj: state.currentProj,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  handler: ((name: string, projData: any) => dispatch(getProj(name, projData))),
+  handler: ((name: string) => dispatch(getProjData(name))),
 });
 
 export default connect(

@@ -9,11 +9,11 @@ const getCurrentProj = (name: string) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  btnName: getCurrentProj(state.currentProj)
+  btnName: getCurrentProj(state.currentProj),
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  handler: (() => dispatch(projButtonClicked()))
+  handler: (() => dispatch(projButtonClicked())),
 });
 
 export default connect(

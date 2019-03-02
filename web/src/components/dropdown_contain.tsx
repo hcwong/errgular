@@ -1,15 +1,13 @@
 import * as React from 'react';
-
 import { NavDropdown, MenuItem } from 'react-bootstrap';
 
 interface Props {
-  // isProjButtonClicked: boolean;
   currentProj: string;
-  handler: (option: string, projData: any) => void;
+  handler: (option: string) => void;
 }
 
 export const DropdownContain = (props: Props) => {
-  const placeholderOptions = ["error1", "error2"]; // hardcoded values
+  const placeholderOptions = ['error1', 'error2']; // hardcoded values
   const options = placeholderOptions.map(
     (option: string) =>
       <MenuItem
@@ -20,28 +18,12 @@ export const DropdownContain = (props: Props) => {
       </MenuItem>,
   );
 
-  // TODO: Might also want to refactor
-  const handleClick = async (name: string) => {
+  const handleClick = (name: string) => {
     try {
-      const projData = await getProjData(name);
-      props.handler(name, projData);
-    } catch (error) {
-      console.log('Error while handling project selection click');
-    }
-  };
-
-  // TODO: Refactor out of this component
-  const getProjData = async (name: string) => {
-    try {
-      const SERVER_URL = process.env.SERVER_URL;
-      const response = await fetch(`http://${SERVER_URL}/proj?projName=${name}`);
-      const projData = response.json();
-      console.log(projData);
-      return projData;
+      props.handler(name);
     } catch (error) {
       console.log(error);
-      console.log('Failed to get project Data');
-      return {};
+      console.log('Error while handling project selection click');
     }
   };
 

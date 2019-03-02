@@ -11,3 +11,18 @@ export const projButtonClicked = () => ({
   type: PROJ_BTN_CLICKED,
   data: {},
 });
+
+export const getProjData = (name: string) => {
+  try {
+    return async (dispatch: any) => {
+      const SERVER_URL = process.env.SERVER_URL;
+      const response = await fetch(`http://${SERVER_URL}/proj?projName=${name}`);
+      const projData = response.json();
+      dispatch(getProj(name, projData));
+    };
+  } catch (error) {
+    console.log(error);
+    console.log('Failed to get project Data');
+    return {};
+  }
+};

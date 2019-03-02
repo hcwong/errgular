@@ -14,7 +14,6 @@ export const Display = (props: Props) => {
       </div>
     );
   } else { // tslint:disable-line
-    console.log(props);
     return (
       <div className="grid-container two-by-two">
         <DisplayBox

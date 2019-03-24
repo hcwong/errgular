@@ -22,6 +22,7 @@ const config = {
   module: {
     rules: [
       { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+      { test: /\.jsx/, loader: "babel-loader" },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
       { exclude: /node_modules/ },

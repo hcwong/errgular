@@ -1,5 +1,5 @@
+// @flow
 import { connect } from 'react-redux';
-
 import { DropdownContain } from './dropdown_contain';
 import { getProjData } from '../actions';
 

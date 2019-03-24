@@ -1,14 +1,9 @@
+// @flow
 import * as React from 'react';
 
 import { Navbar as NavbarComponent, Nav, FormGroup, FormControl, Button } from 'react-bootstrap';
-// import { SearchBar } from './search_bar';
-import DropdownContainContainer from '../dropdown_contain_container'; // tslint:disable-line
+import DropdownContainContainer from '../dropdown_contain_container'; 
 
-interface Props {
-  placeholder: string;
-}
-
-// tslint:disable-next-line
 export const Navbar = () => {
   return (
     <NavbarComponent

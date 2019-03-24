@@ -1,8 +1,9 @@
+// @flow
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { store } from './../store';
+import { store } from '../store';
 import { Home } from './home';
 
 import './../stylesheets/main.scss';

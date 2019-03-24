@@ -1,9 +1,8 @@
-const webpack = require('webpack');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 
 const config = {
-  entry: './src/components/App.tsx',
+  entry: './src/components/App.jsx',
 
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -14,19 +13,19 @@ const config = {
 
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".js", ".jsx", ".json"]
   },
 
   target: 'web',
 
+  mode: 'development',
+
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
       { test: /\.jsx/, loader: "babel-loader" },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
       { exclude: /node_modules/ },
-      // { test: /\.svg$/, use: [{loader: "file-loader", options: {name: "./arrow_down.svg"}}]},
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ],
   },

@@ -1,6 +1,6 @@
+// @flow
 import { GET_PROJ } from './actions';
 
-// tslint:disable-next-line
 interface action {
   type: string;
   data?: any;
@@ -10,14 +10,10 @@ interface action {
 function appReducer(state: any, action: action) {
   switch (action.type) {
     case GET_PROJ:
-      return (<any>Object).assign({}, state, {
+      return (Object).assign({}, state, {
         currentProj: action.data,
         projData: action.projData,
       });
-    // case PROJ_BTN_CLICKED:
-    //   return (<any>Object).assign({}, state, {
-    //     isProjButtonClicked: !state.isProjButtonClicked,
-    //   });
     default:
       return state;
   }

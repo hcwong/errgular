@@ -22,7 +22,7 @@ const config = {
 
   module: {
     rules: [
-      { test: /\.jsx/, loader: "babel-loader" },
+      { test: /\.(jsx|js)$/, loader: "babel-loader" },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
       { exclude: /node_modules/ },

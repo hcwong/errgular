@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import { Display } from './display';
-import { State } from '../store'
+import { ProjectState } from '../store'
 
 const mapStateToProps = (state: ProjectState) => ({
   currentProj: state.currentProj,

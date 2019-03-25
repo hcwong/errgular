@@ -8,7 +8,7 @@ import { Home } from './home';
 
 import './../stylesheets/main.scss';
 
-class App extends React.Component<{}, {}> {
+class App extends React.Component {
   render() {
     return(
       <Home/>

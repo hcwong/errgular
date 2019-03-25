@@ -1,5 +1,6 @@
 // @flow
 import { GET_PROJ } from './actions';
+import { ProjectState } from './store';
 
 interface action {
   type: string;
@@ -7,7 +8,7 @@ interface action {
   projData: any;
 }
 
-function appReducer(state: any, action: action) {
+function appReducer(state: ProjectState, action: action) {
   switch (action.type) {
     case GET_PROJ:
       return (Object).assign({}, state, {

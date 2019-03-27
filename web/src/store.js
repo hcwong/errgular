@@ -14,6 +14,6 @@ export interface ProjectState {
 
 export const store = createStore(
   reducers,
-  initialState as any,
+  initialState,
   applyMiddleware(reduxThunk),
 );

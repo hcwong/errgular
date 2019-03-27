@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { NavDropdown, MenuItem } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
 
 interface Props {
   currentProj: string;
@@ -11,12 +11,12 @@ export const DropdownContain = (props: Props) => {
   const placeholderOptions = ['error1', 'error2']; // hardcoded values
   const options = placeholderOptions.map(
     (option: string) =>
-      <MenuItem
+      <NavDropdown.Item
         className="dropdown-item"
         onClick={() => handleClick(option)}
       >
         {option}
-      </MenuItem>,
+      </NavDropdown.Item>,
   );
 
   const handleClick = (name: string) => {

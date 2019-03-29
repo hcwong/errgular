@@ -22,7 +22,7 @@ export const NavbarContainer = () => {
       <Nav>
         <DropdownContainContainer/>
       </Nav>
-      <Nav pullRight>
+      <Nav className="pullRight">
         <Form className="form-inline">
           <FormGroup>
             <FormControl type="text" placeholder="Search" />

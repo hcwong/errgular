@@ -14,6 +14,7 @@ export const DropdownContain = (props: Props) => {
       <NavDropdown.Item
         className="dropdown-item"
         onClick={() => handleClick(option)}
+        key= {option}
       >
         {option}
       </NavDropdown.Item>,
@@ -33,7 +34,6 @@ export const DropdownContain = (props: Props) => {
       title = {props.currentProj}
       id="basic-nav-dropdown"
       className="nav-item dropdown"
-      eventKey={1}
     >
       {options}
     </NavDropdown>

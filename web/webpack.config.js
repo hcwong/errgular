@@ -2,7 +2,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 
 const config = {
-  entry: './src/components/App.jsx',
+  entry: ['@babel/polyfill', './src/components/App.jsx'],
 
   output: {
     path: path.resolve(__dirname, './dist'),

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavDropdown, MenuItem } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
 
 interface Props {
   currentProj: string;
@@ -10,12 +10,11 @@ export const DropdownContain = (props: Props) => {
   const placeholderOptions = ['error1', 'error2']; // hardcoded values
   const options = placeholderOptions.map(
     (option: string) =>
-      <MenuItem
-        className="dropdown-item"
+      <NavDropdown.Item
         onClick={() => handleClick(option)}
       >
         {option}
-      </MenuItem>,
+      </NavDropdown.Item>,
   );
 
   const handleClick = (name: string) => {
@@ -31,7 +30,6 @@ export const DropdownContain = (props: Props) => {
     <NavDropdown
       title = {props.currentProj}
       id="basic-nav-dropdown"
-      className="nav-item dropdown"
       eventKey={1}
     >
       {options}

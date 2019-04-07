@@ -6,6 +6,7 @@
   "author": "Joshua Wong <joshwonghc@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^11.13.0",
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7",
     "@types/react-redux": "^6.0.6",
@@ -18,6 +19,7 @@
     "style-loader": "^0.23.0",
     "tslint": "^5.12.0",
     "tslint-config-airbnb": "^5.11.1",
+    "url-loader": "^1.1.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
   },
@@ -26,22 +28,18 @@
     "dev": "webpack-dev-server --content-base=web/dist --inline --hot"
   },
   "dependencies": {
-    "@types/node": "^10.12.18",
-    "@types/react-bootstrap": "^0.32.15",
     "bootstrap": "^4.3.1",
     "dotenv-webpack": "^1.7.0",
     "file-loader": "^2.0.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.6",
     "react": "^16.7.0",
-    "react-bootstrap": "^0.32.4",
+    "react-bootstrap": "^1.0.0-beta.6",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "svg-inline-loader": "^0.8.0",
     "typescript": "^3.2.2",
-    "url-loader": "^1.1.2",
     "webpack": "^4.28.3"
   }
 }

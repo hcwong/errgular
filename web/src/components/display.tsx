@@ -5,7 +5,6 @@ interface Props {
   currentProj: string;
 }
 
-// tslint:disable-next-line
 export const Display = (props: Props) => {
   if (props.currentProj === 'Select One') {
     return (
@@ -13,7 +12,7 @@ export const Display = (props: Props) => {
         Select a Project
       </div>
     );
-  } else { // tslint:disable-line
+  } else {
     return (
       <div className="grid-container two-by-two">
         <DisplayBox

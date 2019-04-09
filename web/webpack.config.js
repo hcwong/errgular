@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const UglifyJsPlugin = require('uglify-js-plugin');
 
 const config = {
   entry: './src/components/App.tsx',
@@ -25,7 +27,6 @@ const config = {
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
       { exclude: /node_modules/ },
-      // { test: /\.svg$/, use: [{loader: "file-loader", options: {name: "./arrow_down.svg"}}]},
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ],
   },
@@ -33,7 +34,8 @@ const config = {
   plugins: [
     new Dotenv({
       path: './.env'
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ]
 };
 

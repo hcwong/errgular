@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const UglifyJsPlugin = require('uglify-js-plugin');
+// var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
   entry: './src/components/App.tsx',
@@ -12,7 +12,7 @@ const config = {
     filename: 'bundle.js'
   },  
 
-  devtool: "source-map",
+  devtool: "none",
 
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
@@ -20,6 +20,8 @@ const config = {
   },
 
   target: 'web',
+
+  mode: 'production',
 
   module: {
     rules: [
@@ -35,7 +37,7 @@ const config = {
     new Dotenv({
       path: './.env'
     }),
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin(),
   ]
 };
 

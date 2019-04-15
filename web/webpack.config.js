@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-// var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const config = {
   entry: './src/components/App.tsx',
@@ -33,11 +33,15 @@ const config = {
     ],
   },
 
+  optimization: {
+    minimizer: [new TerserPlugin()],
+  },
+
   plugins: [
     new Dotenv({
       path: './.env'
     }),
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin()
   ]
 };
 

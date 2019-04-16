@@ -14,9 +14,12 @@
 # env files
 *.env
 
+#log files
+*.log
+
 node_modules/
 
-.web/dist/**.js
+web/webpack-stats.json
 
 # Get rid of SWP files
 *.swp

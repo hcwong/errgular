@@ -3,6 +3,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TerserPlugin = require('terser-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const config = {
   entry: './src/components/App.tsx',
@@ -34,14 +35,30 @@ const config = {
   },
 
   optimization: {
-    minimizer: [new TerserPlugin()],
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {passes: 2}
+        }
+      })
+    ],
+    splitChunks: {
+      chunks: 'all'
+    },
   },
 
   plugins: [
     new Dotenv({
       path: './.env'
     }),
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin(),
+    new CompressionPlugin({
+      filename: "[path].gz[query]",
+      algorithm: 'gzip',
+      test: /\.(js|css|html)$/,
+      threshold: 10240,
+      minRatio: Number.MAX_SAFE_INTEGER,
+    })
   ]
 };
 

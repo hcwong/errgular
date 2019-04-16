@@ -12,6 +12,7 @@
     "@types/react-redux": "^6.0.6",
     "@types/webpack-env": "^1.13.6",
     "awesome-typescript-loader": "^5.2.0",
+    "compression-webpack-plugin": "^2.0.0",
     "css-loader": "^1.0.0",
     "dotenv-webpack": "^1.7.0",
     "node-sass": "^4.9.3",
@@ -28,9 +29,9 @@
     "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
-    "dist": "webpack",
+    "dist": "NODE_ENV=production webpack",
     "dev": "webpack-dev-server --content-base=dist --inline --hot",
-    "stats": "webpack --json > stats.json"
+    "stats": "webpack --json > webpack-stats.json"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",

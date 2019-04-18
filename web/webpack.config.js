@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
@@ -12,6 +12,13 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },  
+
+  devServer: {
+    // Modify the response so browser knows its a gzip file
+    before: (app, _) => {app.get('/'), (_, res) => {
+      res.set('Content-Encoding', 'gzip');
+    }}
+  },
 
   devtool: "none",
 
@@ -51,13 +58,14 @@ const config = {
     new Dotenv({
       path: './.env'
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new CompressionPlugin({
       filename: "[path].gz[query]",
       algorithm: 'gzip',
       test: /\.(js|css|html)$/,
       threshold: 10240,
       minRatio: Number.MAX_SAFE_INTEGER,
+      deleteOriginalAssets: true
     })
   ]
 };
